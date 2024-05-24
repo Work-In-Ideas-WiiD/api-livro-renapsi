@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Modulo extends Model
@@ -14,8 +15,8 @@ class Modulo extends Model
 
     protected $guarded = ['id'];
 
-    public function livros(): HasMany
+    public function livros(): BelongsToMany
     {
-        return $this->hasMany(Livro::class);
+        return $this->belongsToMany(Livro::class)->using(LivroTag::class)->withTimestamps();
     }
 }

@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('livros', function (Blueprint $table) {
+        Schema::create('livro_modulos', function (Blueprint $table) {
             $table->uuid('id')->primary()->unique();
-            $table->string('arquivo');
+            $table->foreignUuid('livro_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('modulo_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('livros');
+        Schema::dropIfExists('livro_modulos');
     }
 };
