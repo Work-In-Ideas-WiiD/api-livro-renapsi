@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Conteudo\ModuloController;
 
 
 // Route::get('/user', function (Request $request) {
@@ -30,4 +31,17 @@ Route::middleware('api')->group(function () {
     Route::apiResource('users', UserController::class)
         ->middleware('auth:api')
         ->except('store');
+});
+
+Route::middleware('auth:api')->group(function () {
+
+    Route::group([
+        'prefix' => 'conteudos',
+        'as' => 'conteudos.',
+    ], function () {
+        Route::apiResource('modulo', ModuloController::class)->parameters(['modulo' => 'modulo']);
+        
+    });
+
+    
 });

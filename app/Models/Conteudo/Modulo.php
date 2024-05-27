@@ -17,6 +17,6 @@ class Modulo extends Model
 
     public function livros(): BelongsToMany
     {
-        return $this->belongsToMany(Livro::class)->using(LivroTag::class)->withTimestamps();
+        return $this->belongsToMany(Livro::class, 'livro_modulos')->using(LivroTag::class)->withTimestamps();
     }
 }

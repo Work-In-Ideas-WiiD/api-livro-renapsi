@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary()->unique();
             $table->string('nome');
             $table->text('descricao')->fulltext()->nullable();
+            $table->string('icone')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

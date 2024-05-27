@@ -2,65 +2,62 @@
 
 namespace App\Http\Controllers\Conteudo;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseApiController;
 use App\Models\Conteudo\Modulo;
-use Illuminate\Http\Request;
+use App\Http\Requests\Conteudo\Modulo\StoreRequest;
+use App\Http\Requests\Conteudo\Modulo\UpdateRequest;
+use App\Http\Resources\Conteudo\ModuloCollection;
+use App\Http\Resources\Conteudo\ModuloResources;
+use App\Services\Conteudos\ModuloService;
+use App\Http\Requests\Global\GlobalIndexRequest;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
-class ModuloController extends Controller
+
+class ModuloController extends BaseApiController
 {
+    public function __construct(private readonly ModuloService $moduloService)
+    {
+    }
+    
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(GlobalIndexRequest $request): ModuloCollection
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return new ModuloCollection($this->moduloService->index($request));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request): ModuloResources
     {
-        //
+        return $this->show($this->moduloService->store($request));
     }
 
-    /**
+   /**
      * Display the specified resource.
      */
-    public function show(Modulo $modulo)
+    public function show(Modulo $modulo): ModuloResources
     {
-        //
+        return new ModuloResources($modulo);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Modulo $modulo)
-    {
-        //
-    }
-
-    /**
+     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Modulo $modulo)
+    public function update(UpdateRequest $request, Modulo $modulo): ModuloResources
     {
-        //
+        return $this->show($this->moduloService->update($request, $modulo));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Modulo $modulo)
+    public function destroy(Modulo $modulo): JsonResponse
     {
-        //
+        $modulo->delete();
+        return $this->sendResponse('', true, Response::HTTP_NO_CONTENT);
     }
 }
