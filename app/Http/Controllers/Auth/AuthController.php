@@ -9,7 +9,7 @@ use App\Http\Requests\Auth\ResetPasswordRequest;
 use App\Http\Requests\Auth\RefreshDeviceRequest;
 use App\Http\Resources\Users\UserResources;
 use App\Models\User;
-use App\Services\Users\UserClienteService;
+use App\Services\Users\UserAdminService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,10 +39,7 @@ class AuthController extends BaseApiController
     public function me(): UserResources|JsonResponse
     {
         return new UserResources(
-            User::with(
-                'piloto',
-                'piloto.equipe'
-            )->find(Auth::id())
+            User::find(Auth::id())
         );
     }
 
@@ -85,7 +82,7 @@ class AuthController extends BaseApiController
         return response()->json(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
     }
 
-    public function resetPassword(ResetPasswordRequest $request, UserClienteService $service): JsonResponse
+    public function resetPassword(ResetPasswordRequest $request, UserAdminService $service): JsonResponse
     {
         $user = User::where('email', $request->safe()->email)->first();
         $service->resetPassword(user: $user);

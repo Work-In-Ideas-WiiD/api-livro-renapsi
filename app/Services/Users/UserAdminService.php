@@ -48,4 +48,15 @@ class UserAdminService
         $validatedData['email_verified_at'] = now();
         return tap($user)->update($validatedData);
     }
+
+    public function resetPassword(User $user): User
+    {
+        $user = tap($user)->update(['token' => Str::random(6)]);
+
+        $user->resetPasswordNotification(
+            url: route('user-piloto.update-primeiro-acesso')
+        );
+
+        return $user;
+    }
 }
