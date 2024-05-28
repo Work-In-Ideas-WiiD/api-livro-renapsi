@@ -15,6 +15,10 @@ class Acesso extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'tokens' => 'array',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

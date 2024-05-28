@@ -156,7 +156,8 @@ class SocialMediaService
 
     public function createOrUpdateMoodle(string $charles_wiid, object $moodle): null|User
     {
-
-        return User::updateOrCreate(['email' => $charles_wiid."@moodle.com"], ['email' => $charles_wiid."@moodle.com", 'password' => bcrypt($moodle->privatetoken)]);
+        $user = User::updateOrCreate(['email' => $charles_wiid."@moodle.com"], ['email' => $charles_wiid."@moodle.com", 'password' => bcrypt($moodle->privatetoken)]);;
+        $user->acesso()->create(['tokens' => $moodle]);
+        return $user;
     }
 }

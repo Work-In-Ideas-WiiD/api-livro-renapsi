@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use App\Notifications\NewPasswordNotification;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Aluno\Acesso;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -92,5 +94,10 @@ class User extends Authenticatable implements JWTSubject
             url: $url,
             subject: 'Novo cadastro - Livro '
         ));
+    }
+
+    public function acesso(): HasMany
+    {
+        return $this->hasMany(Acesso::class);
     }
 }
