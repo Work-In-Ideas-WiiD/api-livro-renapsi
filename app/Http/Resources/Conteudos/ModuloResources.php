@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Resources\Conteudo;
+namespace App\Http\Resources\Conteudos;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class ModuloResources    extends JsonResource
+class ModuloResources extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -22,7 +22,7 @@ class ModuloResources    extends JsonResource
             'descricao' => $this->descricao,
             'icone' => $this->getImageUrl(),
             'criado_em' => $this->created_at->format('d/m/Y H:i:s'),
-            'livros' => $this->livros
+            'livros' => LivroResources::collection($this->livros)
         ];
     }
 

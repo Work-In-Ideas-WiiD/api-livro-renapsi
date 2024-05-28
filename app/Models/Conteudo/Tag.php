@@ -16,6 +16,6 @@ class Tag extends Model
 
     public function conteudos(): BelongsToMany
     {
-        return $this->belongsToMany(Livro::class, 'livro_modulos')->using(LivroTag::class)->withTimestamps();
+        return $this->belongsToMany(Livro::class, 'livro_tags')->using(LivroTag::class)->withTimestamps();
     }
 }

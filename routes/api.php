@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Conteudo\ModuloController;
+use App\Http\Controllers\Conteudo\LivroController;
 
 
 // Route::get('/user', function (Request $request) {
@@ -40,6 +41,7 @@ Route::middleware('auth:api')->group(function () {
         'as' => 'conteudos.',
     ], function () {
         Route::apiResource('modulo', ModuloController::class)->parameters(['modulo' => 'modulo']);
+        Route::apiResource('livro', LivroController::class)->parameters(['livro' => 'livro']);
         
     });
 

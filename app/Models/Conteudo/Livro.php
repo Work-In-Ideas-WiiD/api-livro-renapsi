@@ -16,11 +16,11 @@ class Livro extends Model
 
     public function modulos(): BelongsToMany
     {
-        return $this->belongsToMany(Livro::class)->using(LivroModulo::class)->withTimestamps();
+        return $this->belongsToMany(Modulo::class, 'livro_modulos')->using(LivroModulo::class)->withTimestamps();
     }
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Livro::class)->using(LivroTag::class)->withTimestamps();
+        return $this->belongsToMany(Tag::class, 'livro_tags')->using(LivroTag::class)->withTimestamps();
     }
 }
