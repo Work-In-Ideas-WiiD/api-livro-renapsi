@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Conteudo\ModuloController;
 use App\Http\Controllers\Conteudo\LivroController;
+use App\Http\Controllers\Auth\SocialMediaController;
 
 
 // Route::get('/user', function (Request $request) {
@@ -19,6 +20,7 @@ Route::middleware('api')->group(function () {
         'middleware' => ['api']
     ], function () {
         Route::post('login', [AuthController::class, 'login'])->name('login');
+        Route::post('login/moodle', [SocialMediaController::class, 'loginMoodle'])->name('login.moodle');
         Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('reset-password');
         Route::post('refresh_device', [AuthController::class, 'refresh_device'])->name('refresh.device');
         Route::middleware('auth:api')->group(function () {

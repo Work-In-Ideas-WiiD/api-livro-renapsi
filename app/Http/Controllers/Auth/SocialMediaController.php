@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\FacebookLoginRequest;
 use App\Http\Requests\Auth\SocialMediaLoginRequest;
 use App\Http\Requests\SocialMedias\SocialMediaLinkRequest;
 use App\Services\SocialMedia\SocialMediaService;
+use App\Http\Requests\Auth\LoginMoodleRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,22 @@ class SocialMediaController extends BaseApiController
     public function __construct(private readonly SocialMediaService $socialMediaService)
     {
     }
+
+    public function loginMoodle(LoginMoodleRequest $request): JsonResponse
+    {
+        $response = $this->socialMediaService->isMoodleValid($request->safe()->username, $request->safe()->password);
+
+        if($response){
+            $user = $this->socialMediaService->createOrUpdateMoodle($request->safe()->username, $response);
+            return $this->respondWithToken(Auth::tokenById($user->id));
+        }
+        else{
+            return $this->sendResponse(message: 'Login inexistente!', code: 404);
+        }
+        
+        return $this->sendResponse(message: 'Token inválido!');
+    }
+
 
     public function facebookLogin(FacebookLoginRequest $request): JsonResponse
     {

@@ -62,6 +62,15 @@ class SocialMediaService
         return $user->email !== Auth::user()->email;
     }
 
+    public function isMoodleValid(string $username, string $password): object|bool
+    {
+        try {
+            return $this->verifyMoodle($username, $password);
+        } catch (FacebookInvalidTokenException|FacebookInvalidCredentialsException) {
+            return false;
+        }
+    }
+
 
     /**
      * @throws FacebookInvalidCredentialsException
@@ -120,5 +129,34 @@ class SocialMediaService
         } catch (Exception) {
             throw new GoogleInvalidTokenException();
         }
+    }
+
+    /**
+     * @throws FacebookInvalidCredentialsException
+     * @throws FacebookInvalidTokenException
+     */
+    public function verifyMoodle(string $username, string $password): object
+    {
+        $response = Http::withoutVerifying()->acceptJson()->withOptions(["verify"=>false])->get(
+            'https://moodle.infomach.cloud/login/token.php',
+            [
+                'username' => $username,
+                'password' => $password,
+                'service' => 'moodle_mobile_app'
+            ],
+            ['verify' => false]
+        );
+    
+        if ($response->failed() || ($error = $response->object()?->error ?? false)) {
+            throw new FacebookInvalidTokenException(($error ?? false) ? $error : null);
+        }
+
+        return $response->object();
+    }
+
+    public function createOrUpdateMoodle(string $charles_wiid, object $moodle): null|User
+    {
+
+        return User::updateOrCreate(['email' => $charles_wiid."@moodle.com"], ['email' => $charles_wiid."@moodle.com", 'password' => bcrypt($moodle->privatetoken)]);
     }
 }
