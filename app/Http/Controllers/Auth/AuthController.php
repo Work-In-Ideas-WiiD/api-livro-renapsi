@@ -24,7 +24,9 @@ class AuthController extends BaseApiController
      */
     public function login(LoginRequest $request): JsonResponse
     {
-        if (!($token = Auth::attempt($request->safe()->all()))) {
+        $data_login = $request->safe()->merge(['is_admin' => true]);
+
+        if (!($token = Auth::attempt($data_login->all()))) {
             return response()->json(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
         }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Conteudo\ModuloController;
 use App\Http\Controllers\Conteudo\LivroController;
 use App\Http\Controllers\Auth\SocialMediaController;
+use App\Http\Controllers\User\UserAdminController;
 
 
 // Route::get('/user', function (Request $request) {
@@ -37,6 +38,17 @@ Route::middleware('api')->group(function () {
 });
 
 Route::middleware('auth:api')->group(function () {
+
+    Route::group([
+        'prefix' => '/admin',
+        'as' => 'admin.'
+    ], function () {
+        Route::post('criar-senha', [UserAdminController::class, 'register'])
+            ->middleware('auth:api')
+            ->name('register');
+        Route::put('atualizar-senha', [UserAdminController::class, 'updatePrimeiroAcesso'])
+            ->name('update-primeiro-acesso');
+    });
 
     Route::group([
         'prefix' => 'conteudos',
