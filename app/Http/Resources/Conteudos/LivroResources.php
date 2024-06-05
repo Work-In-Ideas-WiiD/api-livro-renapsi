@@ -18,6 +18,7 @@ class LivroResources extends JsonResource
     {
         return [
             'id' => $this->id,
+            'titulo' => $this->titulo,
             'arquivo' => $this->getImageUrl(),
             'criado_em' => $this->created_at->format('d/m/Y H:i:s'),
             'modulos' => $this->modulos,

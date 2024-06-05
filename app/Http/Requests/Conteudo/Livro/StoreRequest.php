@@ -23,7 +23,8 @@ class StoreRequest extends FormRequest
     {
         return [
             'livro' => ['required', 'array'],
-            'livro.arquivo' => ['required', 'file', 'mimes:png,jpg,jpeg,bmp'],
+            'livro.arquivo' => ['required', 'file', 'mimes:pdf'],
+            'livro.titulo' => ['required', 'string', 'max:255'],
             'tags' => ['nullable', 'array'],
             'tags.*' => ['nullable', 'string'],
             'modulos' => ['required', 'array'],

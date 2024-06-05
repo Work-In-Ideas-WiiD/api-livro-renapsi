@@ -33,9 +33,12 @@ class LivroService
                 'arquivo',
                 AllowedFilter::custom('tags_nome', new MonitoramentoRelationFilter()),
                 AllowedFilter::callback('search', function($query, $value){
-                    $query->where('titulo', 'ilike', '%' . $value . '%')
+                    $query->where('titulo', 'like', '%' . $value . '%')
+                    ->orWhereHas('modulos', function($query) use ($value) {
+                        $query->where('nome', 'like', '%' . $value . '%');
+                    })
                     ->orWhereHas('tags', function($query) use ($value) {
-                        $query->where('nome', 'ilike', '%' . $value . '%');
+                        $query->where('nome', 'like', '%' . $value . '%');
                     });
                 }),
             ])
