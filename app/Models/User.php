@@ -9,9 +9,11 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use App\Notifications\NewPasswordNotification;
+use App\Notifications\NewSupportNotification;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Aluno\Acesso;
+use App\Models\Aluno\Suporte;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -96,8 +98,22 @@ class User extends Authenticatable implements JWTSubject
         ));
     }
 
+    public function sendNewSendSuportRequestNotification(string $email, string $texto): void
+    {
+        $this->notify(new NewSupportNotification(
+            email: $email,
+            texto: $texto,
+            subject: 'Email Suporte - Livro '
+        ));
+    }
+
     public function acesso(): HasMany
     {
         return $this->hasMany(Acesso::class);
+    }
+
+    public function suporte(): HasMany
+    {
+        return $this->hasMany(Suporte::class);
     }
 }

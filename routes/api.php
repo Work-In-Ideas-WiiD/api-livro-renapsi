@@ -59,5 +59,8 @@ Route::middleware('auth:api')->group(function () {
         
     });
 
+    Route::post('users/suporte', [UserController::class, 'sendSuport'])
+        ->name('users.suporte');
+
     
 });

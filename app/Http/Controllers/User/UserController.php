@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\BaseApiController;
 use App\Http\Requests\Global\GlobalIndexRequest;
 use App\Http\Requests\Users\PushNotificationStoreRequest;
+use App\Http\Requests\Users\UserSendSuportRequest;
 use App\Http\Requests\Users\UserUpdateRequest;
 use App\Http\Resources\Users\UserCollection;
 use App\Http\Resources\Users\UserResources;
@@ -57,5 +58,19 @@ class UserController extends BaseApiController
         }
 
         return $this->sendResponse(is_success: true, code: Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * Send Suport the specified resource in storage.
+     */
+    public function sendSuport(UserSendSuportRequest $request): JsonResponse
+    {
+        $response = $this->service->createSuport($request, auth()->user());
+
+        if(!$response){
+            return $this->sendResponse();
+        }
+
+        return $this->sendResponse(message: 'Mensagem suport enviada com sucesso!', is_success: true, code: 200);
     }
 }

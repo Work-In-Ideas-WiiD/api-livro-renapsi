@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\AllowedSort;
 use Spatie\QueryBuilder\QueryBuilder;
+use App\Models\Aluno\Suporte;
 
 class UserService
 {
@@ -52,4 +53,13 @@ class UserService
 
         return tap($user)->update($validatedData);
     }
+
+    public function createSuport(Request $request, User $user): Suporte
+    {
+        $suporte = $user->suporte()->create(['email' => $request->safe()->email, 'texto' => $request->safe()->texto]);
+        $user->sendNewSendSuportRequestNotification($suporte->email, $suporte->texto);
+        return $suporte;
+    }
+
+
 }
