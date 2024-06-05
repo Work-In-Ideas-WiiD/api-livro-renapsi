@@ -70,9 +70,11 @@ class LivroService
     {
         return DB::transaction(function () use ($request, $livro) {
             $livro_data = $request->safe()->livro;
-            $livro_data['arquivo'] = $this->uploadToS3($request);
-
-
+            
+            if ($request->hasFile('livro.arquivo')) {
+                $livro_data['arquivo'] = $this->uploadToS3($request);
+            }
+            
             $livro = tap($livro)->update($livro_data);
             $livro->tags()->sync((new CreateTags())->handle($request->safe()->tags));
             $livro->modulos()->sync($request->safe()->modulos);

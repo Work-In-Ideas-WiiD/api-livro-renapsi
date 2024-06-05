@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'livro' => ['required', 'array'],
-            'livro.arquivo' => ['required', 'file', 'mimes:pdf'],
+            'livro.arquivo' => ['nullable', 'file', 'mimes:pdf'],
             'livro.titulo' => ['required', 'string', 'max:255'],
             'tags' => ['nullable', 'array'],
             'tags.*' => ['nullable', 'string'],
