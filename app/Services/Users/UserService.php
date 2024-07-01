@@ -19,6 +19,7 @@ class UserService
         'id',
         'email',
         'is_admin',
+        'role'
     ];
 
     public function index(Request $request): LengthAwarePaginator
@@ -28,6 +29,7 @@ class UserService
             ->allowedFilters([
                 AllowedFilter::custom('id', new PostgreRelationFixer()),
                 'email',
+                'role',
                 AllowedFilter::exact('admin', 'is_admin'),
                 // AllowedFilter::custom('global', new GlobalIndexFilter(self::GLOBAL_FILTER_FIELDS)),
 

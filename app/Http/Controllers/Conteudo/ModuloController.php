@@ -19,7 +19,7 @@ class ModuloController extends BaseApiController
     public function __construct(private readonly ModuloService $moduloService)
     {
     }
-    
+
     /**
      * Display a listing of the resource.
      */

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -169,4 +169,60 @@
             </div>
         </div>
     </body>
+</html> --}}
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{{ config('app.name', 'EducaPulmao') }}</title>
+  <!-- Scripts -->
+  <script src="{{ asset('js/app.js') }}" defer></script>
+
+  <script src="{{ asset('assets/vendor/chart.js/dist/Chart.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/chart.js/dist/Chart.extension.js') }}"></script>
+  {{-- <script src="{{ asset('assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script> --}}
+
+
+  <!-- Fonts -->
+  {{-- <link rel="dns-prefetch" href="https://fonts.gstatic.com"> --}}
+  {{-- <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css"> --}}
+  <!-- Styles -->
+
+   <!-- Custom fonts for this template-->
+   <link href="{{ asset('css/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+   <!-- Favicon -->
+   {{-- <link href="{{ asset('argon') }}/img/brand/favicon.png" rel="icon" type="image/png"> --}}
+   <!-- Fonts -->
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+   <!-- Icons -->
+   {{-- <link href="{{ asset('argon') }}/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+   <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+   <!-- Argon CSS -->
+   <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet"> --}}
+
+   <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/png">
+   <!-- Icons -->
+   <link rel="stylesheet" href="{{ asset('assets/vendor/nucleo/css/nucleo.css') }}" type="text/css">
+   <link rel="stylesheet" href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" type="text/css">
+   <!-- Argon CSS -->
+   <link rel="stylesheet" href="{{ asset('assets/css/argon.css') }}" type="text/css">
+
+   {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+</head>
+<body id="bg" class="{{ $class ?? ' ' }}">
+    <div id="app">
+        <index></index>
+    </div>
+
+    <!-- Argon JS -->
+    <script src="{{ asset('argon/vendor/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('argon/vendor/js-cookie/js.cookie.js') }}"></script>
+    <script src="{{ asset('assets/js/argon.js') }}"></script>
+</body>
 </html>
