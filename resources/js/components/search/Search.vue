@@ -15,8 +15,8 @@
         <div class="col-3">
             <select v-model="ordem" class="custom-select">
             <option value="">Ordem:</option>
-            <option value="asc">Crescente</option>
-            <option value="desc">Decrescente</option>
+            <option value="criado_em">Crescente</option>
+            <option value="-criado_em">Decrescente</option>
             </select>
         </div>
         <div class="col-2">
@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         search() {
-            this.$emit('search', { 
+            this.$emit('search', {
                 dados: {
                     nome: this.nome,
                     mostrar: this.mostrar,

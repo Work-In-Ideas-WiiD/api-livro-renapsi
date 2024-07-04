@@ -60,4 +60,10 @@ class ModuloController extends BaseApiController
         $modulo->delete();
         return $this->sendResponse('', true, Response::HTTP_NO_CONTENT);
     }
+
+    public function lista()
+    {
+        $modulos = Modulo::get(['nome', 'id']);
+        return response()->json($modulos, 200);
+    }
 }

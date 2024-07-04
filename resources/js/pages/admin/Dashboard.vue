@@ -32,8 +32,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Usuários</h5>
-                      <span class="h2 font-weight-bold mb-0">{{this.total['usuarios']}}</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Alunos</h5>
+                      <span class="h2 font-weight-bold mb-0">{{this.total['alunos']}}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -54,8 +54,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Pedidos</h5>
-                      <span class="h2 font-weight-bold mb-0">{{this.total['pedidos']}}</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Módulos</h5>
+                      <span class="h2 font-weight-bold mb-0">{{this.total['modulos']}}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -76,78 +76,12 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Produtos Cadastrados</h5>
-                      <span class="h2 font-weight-bold mb-0">{{this.total['produtos']}}</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Livros</h5>
+                      <span class="h2 font-weight-bold mb-0">{{this.total['livros']}}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
                         <i class="ni ni-basket "></i>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Desde o último mês</span>
-                  </p> -->
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Valor Total Pedidos</h5>
-                      <span class="h2 font-weight-bold mb-0">{{ formatPrice(this.total['valor_pedidos']) }}</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                        <i class="ni ni-money-coins"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Desde o último mês</span>
-                  </p> -->
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Lucro Geral</h5>
-                      <span class="h2 font-weight-bold mb-0">{{ formatPrice(this.total['lucro_geral']) }}</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                        <i class="ni ni-money-coins"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Desde o último mês</span>
-                  </p> -->
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Ticket medio pedido</h5>
-                      <span class="h2 font-weight-bold mb-0">{{ formatPrice(this.total['media_pedidos'])}}</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
                       </div>
                     </div>
                   </div>
@@ -172,7 +106,7 @@
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--6" v-if="$auth.check(1)">
-        <div class="row mb-2">
+        <!-- <div class="row mb-2">
             <div class="col text-right">
               <date-range-picker
                 ref="picker"
@@ -193,8 +127,8 @@
               </date-range-picker>
 
             </div>
-        </div>
-      <div class="row">
+        </div> -->
+      <!-- <div class="row">
         <div class="col-12 col-xl-6">
           <div class="card bg-default">
             <div class="card-header bg-transparent">
@@ -222,9 +156,7 @@
               </div>
             </div>
             <div class="card-body">
-              <!-- Chart -->
               <div class="chart" id="chart-sales">
-                <!-- Chart wrapper -->
                 <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
               </div>
             </div>
@@ -257,9 +189,7 @@
               </div>
             </div>
             <div class="card-body">
-              <!-- Chart -->
               <div class="chart" id="chart-faturamento">
-                <!-- Chart wrapper -->
                 <canvas id="chart-faturamento-dark" class="chart-canvas"></canvas>
               </div>
             </div>
@@ -276,21 +206,20 @@
               </div>
             </div>
             <div class="card-body">
-              <!-- Chart -->
               <div class="chart" id="chart-bars-html">
                 <canvas id="chart-bars" class="chart-canvas"></canvas>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-xl-12">
           <div class="card">
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Ultimos Pedidos</h3>
+                  <h3 class="mb-0">Ultimos Livros</h3>
                 </div>
                 <div class="col text-right">
                   <!-- <a href="#!" class="btn btn-sm btn-primary">See all</a> -->
@@ -302,25 +231,27 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col" class="sort" data-sort="status">Data</th>
-                    <th scope="col" class="sort" data-sort="status" >Cliente</th>
-                    <th scope="col" class="sort" data-sort="status" >Entrega</th>
-                    <th scope="col" class="sort" data-sort="status" >Total</th>
-                    <th scope="col" class="sort" data-sort="completion">Status</th>
-                    <th scope="col"></th>
+                    <th scope="col" class="sort" data-sort="status">Título</th>
+                    <th scope="col" class="sort" data-sort="completion">Módulos</th>
+                    <th scope="col" class="sort" data-sort="completion">Tags</th>
+                    <th scope="col" class="sort" data-sort="completion">Data</th>
                   </tr>
                 </thead>
                 <tbody class="list">
-                    <tr v-for="pedido in pedidos.data" v-bind:key="pedido.id" @click="$router.push({name: 'pedido.ver', params: { id: pedido.id },})" style="margin-bottom: 5px;">
-                        <td>{{ getHumanDate(pedido.created_at) }}</td>
-                        <td>{{ pedido.cliente.nome }}</td>
-                         <td>{{ pedido.entrega.nome }}</td>
-                        <td>{{ formatPrice(pedido.total) }}</td>
-                        <td v-bind:style="'color: ' + pedido.status.color">{{ pedido.status.nome }}</td>
+                    <tr v-for="livro in livros.data" v-bind:key="livro.id" style="margin-bottom: 5px;">
                         <td>
-                            <button class="btn-circle btn-sm btn-info" title="Valores" @click="$router.push({name: 'pedido.ver', params: { id: pedido.id },})"> <i class="fas fa-fw fa-eye"></i></button>
-                            <!-- <button class="btn-circle btn-sm btn-danger" title="Deletar" data-toggle="modal" data-target="#modal-delete" block @click="showDelete(atributo)"><i class="fas fa-fw fa-trash-alt"></i></button> -->
+                            <div class="media align-items-center">
+                              <a  v-bind:href="livro.arquivo" class="avatar mr-3">
+                                <img v-bind:alt="livro.titulo" src="assets/img/theme/pdf_icon.png">
+                              </a>
+                              <div class="media-body">
+                                <span class="name mb-0 text-sm">{{ livro.titulo }}</span>
+                              </div>
+                            </div>
                         </td>
+                        <td>{{ livro.nome_modulos }}</td>
+                        <td>{{ livro.nome_tags }}</td>
+                        <td>{{ livro.criado_em }}</td>
                     </tr>
                 </tbody>
               </table>
@@ -339,7 +270,7 @@
   export default {
     data() {
       return {
-        pedidos: {},
+        livros: {},
         totalRegistroChart: [],
         registros: [],
         total: [],
@@ -486,11 +417,11 @@
       },
       getPedidos() {
         this.$http({
-          url: `pedido`,
+          url: `conteudos/livro?per_page=5`,
           method: 'GET'
         })
           .then(response => {
-              this.pedidos = response.data;
+              this.livros = response.data;
           }).catch(error=>{
               this.has_error = true
           })

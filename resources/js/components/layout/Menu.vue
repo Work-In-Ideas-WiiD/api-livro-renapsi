@@ -11,7 +11,7 @@
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="/assets/img/brand/Kaoa-preta.png" class="navbar-brand-img" alt="...">
+          <img src="/assets/img/brand/Grupo_Dema.png" class="navbar-brand-img" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
@@ -33,11 +33,11 @@
             </li>
             <li v-if="$auth.check([1,2])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
               <router-link class="nav-link" to="/modulos">
-                <i class="ni ni-folder-17"></i>
+                <i class="ni ni-folder-17 text-info"></i>
                 <span class="nav-link-text">Módulo</span>
               </router-link>
             </li>
-            <li v-if="$auth.check([1,2,3,6])" class="nav-item dropdown">
+            <!-- <li v-if="$auth.check([1,2,3,6])" class="nav-item dropdown">
                 <a class="nav-link nav-link-icon" href="#" id="navbar-default_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                     <i class="ni ni-basket text-orange"></i>
                     <span class="nav-link-text">Produtos</span>
@@ -47,20 +47,20 @@
                       <router-link v-if="$auth.check(route.roles)" class="dropdown-item" :to="{ name : route.path }" :key="key"> <i v-bind:class="'ni ' + route.icon +' text-primary'"></i> {{route.name}}</router-link>
                    </li>
                 </div>
-            </li>
+            </li> -->
             <li v-if="$auth.check([1,2])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
               <router-link class="nav-link" to="/usuario">
                 <i class="ni ni-circle-08"></i>
-                <span class="nav-link-text">Usuários</span>
+                <span class="nav-link-text">Alunos</span>
               </router-link>
             </li>
-            <li v-if="$auth.check([1,2,3,4,5])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
-              <router-link class="nav-link" to="/pedido">
-                <i class="ni ni-cart text-primary"></i>
-                <span class="nav-link-text">Pedidos</span>
+            <li v-if="$auth.check([1,2])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
+              <router-link class="nav-link" to="/livros">
+                <i class="ni ni-books text-success"></i>
+                <span class="nav-link-text">Livros</span>
               </router-link>
             </li>
-            <li v-if="$auth.check([1,3,4])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
+            <!-- <li v-if="$auth.check([1,3,4])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
               <router-link class="nav-link" to="/pedido_entrega">
                 <i class="ni ni-cart text-success"></i>
                 <span class="nav-link-text">Pedidos Para Entrega</span>
@@ -83,7 +83,7 @@
                 <i class="ni ni-folder-17 text-info"></i>
                 <span class="nav-link-text">Banners</span>
               </router-link>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>

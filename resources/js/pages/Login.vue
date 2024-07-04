@@ -24,7 +24,7 @@
           <div class="card bg-secondary border-0 mb-0">
             <div class="card-header bg-transparent">
                <div class="text-center">
-                  <img src="assets/img/brand/Kaoa-preta.png" class="navbar-brand-img" alt="..." width="200px">
+                  <img src="assets/img/brand/assinatura-biblioteca-digital.png" class="navbar-brand-img" alt="..." width="300px">
                </div>
             </div>
             <div class="card-body px-lg-5 py-lg-5">

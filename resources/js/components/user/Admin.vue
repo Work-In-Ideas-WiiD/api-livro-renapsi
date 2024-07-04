@@ -248,7 +248,7 @@ export default {
       return {
         has_error: false,
         users: {},
-        email: null,
+        email: '',
         celular: null,
         nome_vendedor: null,
         imagem_vendedor: null,
@@ -295,9 +295,9 @@ export default {
                 url: 'users?filter[role]=1',
                 method: 'GET',
                 params: {
-                like: payload.dados.nome,
-                order: payload.dados.ordem,
-                mostrar: payload.dados.mostrar
+                'filter[email]': payload.dados.nome,
+                sort: payload.dados.ordem,
+                per_page: payload.dados.mostrar
                 },
             })
             .then(response=>{
@@ -500,7 +500,7 @@ export default {
       reenviarToken(user) {
 
         this.$http({
-            url: `reenviar_token/` + user.id,
+            url: `users/reenviar_token/` + user.id,
             method: 'GET',
           })
 

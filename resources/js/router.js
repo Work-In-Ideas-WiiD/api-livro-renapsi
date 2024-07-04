@@ -14,6 +14,7 @@ import EditarUser from './pages/admin/user/EditarUser'
 import PerfilAdmin from './pages/admin/Perfil'
 import CategoriaAdmin from './pages/admin/categoria/ListaCategoria'
 import ModuloAdmin from './pages/admin/modulo/ListaModulo'
+import LivroAdmin from './pages/admin/livro/ListaLivro'
 import AtributoAdmin from './pages/admin/atributo/ListaAtributo'
 import AtributoValorAdmin from './pages/admin/atributovalor/ListaAtributoValor'
 import MarcaAdmin from './pages/admin/marca/ListaMarca'
@@ -209,7 +210,15 @@ const routes = [
     name: 'modulo.admin',
     component: ModuloAdmin,
     meta: {
-      auth: {roles: [1,2,6], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
+      auth: {roles: [1], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
+    }
+  },
+  {
+    path: '/livros',
+    name: 'livro.admin',
+    component: LivroAdmin,
+    meta: {
+      auth: {roles: [1], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
     }
   },
   {

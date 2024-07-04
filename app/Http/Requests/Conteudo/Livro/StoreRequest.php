@@ -22,9 +22,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'livro' => ['required', 'array'],
-            'livro.arquivo' => ['required', 'file', 'mimes:pdf'],
-            'livro.titulo' => ['required', 'string', 'max:255'],
+            'arquivo' => ['required', 'file', 'mimes:pdf'],
+            'titulo' => ['required', 'string', 'max:255'],
             'tags' => ['nullable', 'array'],
             'tags.*' => ['nullable', 'string'],
             'modulos' => ['required', 'array'],

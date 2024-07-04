@@ -21,14 +21,19 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        if($this->input('livro.arquivo') === "null")
+            $arquivo = 'nullable';
+        else
+            $arquivo = 'nullable|mimes:pdf|max:10000';
+
         return [
             'livro' => ['required', 'array'],
-            'livro.arquivo' => ['nullable', 'file', 'mimes:pdf'],
+            'livro.arquivo' => $arquivo,
             'livro.titulo' => ['required', 'string', 'max:255'],
             'tags' => ['nullable', 'array'],
             'tags.*' => ['nullable', 'string'],
             'modulos' => ['required', 'array'],
-            'modulos.*' => ['required', 'uuid']  
+            'modulos.*' => ['required', 'uuid']
         ];
     }
 }

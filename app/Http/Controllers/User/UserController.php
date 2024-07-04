@@ -73,4 +73,19 @@ class UserController extends BaseApiController
 
         return $this->sendResponse(message: 'Mensagem suport enviada com sucesso!', is_success: true, code: 200);
     }
+
+    /**
+     * Send Suport the specified resource in storage.
+     */
+    public function sendToken(User $user): JsonResponse
+    {
+        $response = $this->service->sendToken($user);
+
+        if(!$response){
+            return $this->sendResponse();
+        }
+
+        return $this->sendResponse(message: 'Token reenviado com sucesso!', is_success: true, code: 200);
+    }
+
 }

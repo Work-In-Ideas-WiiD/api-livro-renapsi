@@ -48,7 +48,13 @@ class ModuloService
 
     public function update(Request $request, Modulo $modulo): Modulo
     {
-        return tap($modulo)->update($request->safe()->all());
+        $equipe_data = $request->safe()->except('icone');
+
+        if(isset($request->safe()->icone) && $request->safe()->icone !== "null"){
+            $equipe_data['icone'] = $this->uploadToS3($request);
+        }
+
+        return tap($modulo)->update($equipe_data);
     }
 
     private function uploadToS3(Request $request): bool|string

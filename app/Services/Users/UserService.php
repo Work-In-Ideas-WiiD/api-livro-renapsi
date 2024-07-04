@@ -58,9 +58,15 @@ class UserService
 
     public function createSuport(Request $request, User $user): Suporte
     {
-        $suporte = $user->suporte()->create(['email' => $request->safe()->email, 'texto' => $request->safe()->texto]);
+        $suporte = $user->suporte()->create(['email' => $request->safe()->email, 'texto' => $request->safe()->texto, 'role' => 0]);
         $user->sendNewSendSuportRequestNotification($suporte->email, $suporte->texto);
         return $suporte;
+    }
+
+    public function sendToken(User $user): User
+    {
+        $user->sendNewPasswordRequestNotification(route('update-primeiro-acesso'));
+        return $user;
     }
 
 

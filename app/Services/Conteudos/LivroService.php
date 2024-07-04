@@ -52,14 +52,15 @@ class LivroService
     public function store(Request $request): Livro
     {
         return DB::transaction(function () use ($request) {
-            $livro_data = $request->safe()->livro;
+            $livro_data = $request->safe()->only('arquivo', 'titulo');
             $livro_data['arquivo'] = $this->uploadToS3($request);
 
             $livro = Livro::create($livro_data);
 
-            $livro->tags()->sync((new CreateTags())->handle($request->safe()->tags));
+            if($request->safe()->tags)
+                $livro->tags()->sync((new CreateTags())->handle($request->safe()->tags));
 
-            $livro->modulos()->sync($request->safe()->modulos); 
+            $livro->modulos()->sync($request->safe()->modulos);
 
             $livro->load(['modulos', 'tags']);
             return $livro;
@@ -69,12 +70,12 @@ class LivroService
     public function update(Request $request, Livro $livro): Livro
     {
         return DB::transaction(function () use ($request, $livro) {
-            $livro_data = $request->safe()->livro;
-            
-            if ($request->hasFile('livro.arquivo')) {
+            $livro_data = $request->safe()->only('arquivo', 'titulo');
+
+            if ($request->hasFile('arquivo')) {
                 $livro_data['arquivo'] = $this->uploadToS3($request);
             }
-            
+
             $livro = tap($livro)->update($livro_data);
             $livro->tags()->sync((new CreateTags())->handle($request->safe()->tags));
             $livro->modulos()->sync($request->safe()->modulos);
@@ -86,6 +87,6 @@ class LivroService
     private function uploadToS3(Request $request): bool|string
     {
         return Storage::disk('spaces')
-            ->putFile("/livro", $request->file('livro.arquivo'));
+            ->putFile("/livro", $request->file('arquivo'));
     }
 }

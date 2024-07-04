@@ -65,5 +65,12 @@ Route::middleware('auth:api')->group(function () {
     Route::post('users/suporte', [UserController::class, 'sendSuport'])
         ->name('users.suporte');
 
+    Route::get('users/reenviar_token/{user}', [UserController::class, 'sendToken'])
+        ->name('users.reenviar');
 
+    Route::get('lista_modulo', [ModuloController::class, 'lista']);
+
+    Route::get('tags/{livro}', [LivroController::class, 'listTags']);
+
+    Route::get('dashboard/total', [LivroController::class, 'total']);
 });

@@ -11,6 +11,8 @@ use App\Http\Resources\Conteudos\LivroCollection;
 use App\Http\Resources\Conteudos\LivroResources;
 use App\Services\Conteudos\LivroService;
 use App\Http\Requests\Global\GlobalIndexRequest;
+use App\Models\Conteudo\Modulo;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -20,7 +22,7 @@ class LivroController extends BaseApiController
     public function __construct(private readonly LivroService $livroService)
     {
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -60,5 +62,38 @@ class LivroController extends BaseApiController
     {
         $livro->delete();
         return $this->sendResponse('', true, Response::HTTP_NO_CONTENT);
+    }
+
+     /**
+     * Lista de tags.
+     *
+     * @return void
+     */
+
+    public function listTags(Livro $livro): JsonResponse
+    {
+        $tags = $livro->tags;
+        $palavras = [];
+        foreach($tags as $tag){
+            $key = [
+                'key' => $tag->id,
+                'value' => $tag->nome,
+            ];
+
+            array_push($palavras, $key);
+        }
+
+        return response()->json($palavras, 200);
+    }
+
+    public function total()
+    {
+        $total = [];
+        $total['alunos'] = User::where('is_admin', 0)->where('role', 0)->count();
+        $total['modulos'] = Modulo::count();
+        $total['livros'] = Livro::count();
+
+        return response()->json($total, 200);
+
     }
 }

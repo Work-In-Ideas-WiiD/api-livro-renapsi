@@ -22,7 +22,9 @@ class LivroResources extends JsonResource
             'arquivo' => $this->getImageUrl(),
             'criado_em' => $this->created_at->format('d/m/Y H:i:s'),
             'modulos' => $this->modulos,
-            'tags' => $this->tags
+            'tags' => $this->tags,
+            'nome_modulos' => $this->modulos->pluck('nome')->implode(' , '),
+            'nome_tags' => $this->tags->pluck('nome')->implode(' , ')
         ];
     }
 

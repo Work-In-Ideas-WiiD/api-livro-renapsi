@@ -22,7 +22,6 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="sort" data-sort="status">Módulo</th>
-                    <th scope="col" class="sort" data-sort="completion">Imagem De Capa</th>
                     <th scope="col" class="sort" data-sort="completion">Data</th>
                     <th scope="col"></th>
                   </tr>
@@ -95,14 +94,15 @@
                             <b-form-file
                             v-model="imagem"
                             @change="onImagemChange"
-                            placeholder="Selecione capa da categoria"
+                            placeholder="Selecione icone do módulo"
                             drop-placeholder="Solte a imagem aqui..."
                             ></b-form-file>
                             <small class="text-muted" >tamanho mínimo da imagem - 192x192 pixels, será aceito somente imagem JPG, outros formatos não serão aceitos como: JPEG, PNG</small>
 
-                            <div class="invalid-feedback" v-if="errors.icone">
-                                <p>{{errors.icone[0]}}</p>
-                            </div>
+                            <span class="invalid-feedback" style="display: block;" role="alert" v-if="errors.icone">
+                                <strong>{{errors.icone[0]}}</strong>
+                            </span>
+
                         </div>
                         <div class="form-group">
                             <label for="example-text-input" class="form-control-label">Descrição</label>
@@ -159,14 +159,14 @@
                             <b-form-file
                             v-model="imagem_update"
                             @change="onImagemChangeUpdate"
-                            placeholder="Selecione capa da categoria"
+                            placeholder="Selecione icone do módulo"
                             drop-placeholder="Solte a imagem aqui..."
                             ></b-form-file>
                             <small class="text-muted" >tamanho mínimo da imagem - 192x192 pixels, será aceito somente imagem JPG, outros formatos não serão aceitos como: JPEG, PNG</small>
 
-                            <div class="invalid-feedback" v-if="errors.capa">
-                                <p>{{errors.capa[0]}}</p>
-                            </div>
+                            <span class="invalid-feedback" style="display: block;" role="alert" v-if="errors.icone">
+                                <strong>{{errors.icone[0]}}</strong>
+                            </span>
                         </div>
                         <div class="form-group">
                             <label for="example-text-input" class="form-control-label">Descrição</label>
@@ -189,16 +189,16 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Excluir Categoria</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Excluir Módulo</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
             <div class="d-block">
-                <p>Tem certeza que deseja deletar a categoria: <b>{{ deleteCategoriaData.nome }}</b></p>
+                <p>Tem certeza que deseja deletar a módulo: <b>{{ deleteModuloData.nome }}</b></p>
             </div>
-            <b-button class="mt-3" variant="outline-danger" block @click="deleteCategoria(deleteCategoriaData)">Excluir</b-button>
+            <b-button class="mt-3" variant="outline-danger" block @click="deleteModulo(deleteModuloData)">Excluir</b-button>
         </div>
         </div>
     </div>
@@ -216,12 +216,12 @@ export default {
       return {
         has_error: false,
         modulos: {},
-        nome: null,
+        nome: '',
         password: null,
         password_confirmation: null,
         errors: {},
         editModuloData: {},
-        deleteCategoriaData: {},
+        deleteModuloData: {},
         searchLike: '',
         searchOder: '',
         searchMostrar: '',
@@ -246,9 +246,9 @@ export default {
                 url: 'conteudos/modulo',
                 method: 'GET',
                 params: {
-                like: payload.dados.nome,
-                order: payload.dados.ordem,
-                mostrar: payload.dados.mostrar
+                'filter[nome]': payload.dados.nome,
+                sort: payload.dados.ordem,
+                per_page: payload.dados.mostrar
                 },
             })
             .then(response=>{
@@ -394,35 +394,35 @@ export default {
                 }
             })
         },
-      showDelete(categoria){
-        this.deleteCategoriaData = categoria;
+      showDelete(modulo){
+        this.deleteModuloData = modulo;
       },
       hideDeleteModal() {
         $('#modal-delete').modal('hide')
       },
-      deleteCategoria(categoria) {
+      deleteModulo(modulo) {
 
         this.$http({
-            url: `categoria/` + categoria.id,
+            url: `conteudos/modulo/` + modulo.id,
             method: 'DELETE',
           })
 
           .then(response=>{
-            this.categorias.data = this.categorias.data.filter(obj => {
-                return obj.id != categoria.id;
+            this.modulos.data = this.modulos.data.filter(obj => {
+                return obj.id != modulo.id;
             });
 
             this.hideDeleteModal();
 
             this.flashMessage.success({
-                message: 'Categoria deletada com sucesso!',
+                message: 'Módulo deletado com sucesso!',
                 time: 5000
             });
 
           }, error =>{
 
              this.flashMessage.error({
-                message: 'Error ao deletar Categoria!',
+                message: 'Error ao deletar Módulo!',
                 time: 5000
             });
           })

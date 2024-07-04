@@ -21,10 +21,15 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        if($this->input('icone') === "null")
+            $icone = 'nullable';
+        else
+            $icone = 'nullable|mimes:jpeg,jpg,png,gif|max:10000';
+
         return [
             'nome' => ['required', 'string', 'max:255'],
             'descricao' => ['nullable', 'string'],
-            'icone' => ['nullable', 'file', 'mimes:png,jpg,jpeg,bmp'],
+            'icone' => $icone,
         ];
     }
 }

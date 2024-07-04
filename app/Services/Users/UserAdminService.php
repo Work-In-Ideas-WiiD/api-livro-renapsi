@@ -36,7 +36,7 @@ class UserAdminService
 
         return DB::transaction(function () use ($validatedData) {
             $user = User::create($validatedData);
-            $user->sendNewPasswordRequestNotification(route('admin.update-primeiro-acesso'));
+            $user->sendNewPasswordRequestNotification(route('update-primeiro-acesso'));
             return $user;
         });
     }
