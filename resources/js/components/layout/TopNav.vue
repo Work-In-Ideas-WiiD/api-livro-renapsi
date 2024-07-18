@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom blocoNav">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Navbar links -->
@@ -14,7 +14,7 @@
                 </div>
             </li>
           </ul>
-          <h1 class="h1 text-white d-inline-block mb-0">Painel</h1>
+          <!-- <h1 class="h1 text-white d-inline-block mb-0">Painel</h1> -->
           <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
             <li class="nav-item dropdown">
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

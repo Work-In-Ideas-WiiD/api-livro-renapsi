@@ -7,12 +7,12 @@
             </div>
         </div>
     </div> -->
-<div class="main-content" id="panel">
+<div class="main-content corpoDash" id="panel">
   <TopNav></TopNav>
-    <div class="header bg-primary pb-6">
+    <div class="header bg-primary pb-6 headerDash">
       <div class="container-fluid">
         <div class="header-body">
-          <div class="row align-items-center py-4">
+          <!-- <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
               <h6 class="h2 text-white d-inline-block mb-0">Inicio</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
@@ -23,21 +23,26 @@
                 </ol>
               </nav>
             </div>
-          </div>
+          </div> -->
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-gray d-inline-block mb-0">Dashboard</h6>
+            </div>
+          </div> 
           <!-- Card stats -->
           <div class="row" v-if="$auth.check(1)">
             <div class="col-xl-4 col-md-6">
               <div class="card card-stats">
                 <!-- Card body -->
-                <div class="card-body">
+                <div class="card-body corpoCardDash">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Alunos</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0 textoStats">Total Alunos</h5>
                       <span class="h2 font-weight-bold mb-0">{{this.total['alunos']}}</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                        <i class="ni ni-active-40"></i>
+                      <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow iconeStats">
+                        <i class="ni ni-circle-08"></i>
                       </div>
                     </div>
                   </div>
@@ -51,15 +56,15 @@
             <div class="col-xl-4 col-md-6">
               <div class="card card-stats">
                 <!-- Card body -->
-                <div class="card-body">
+                <div class="card-body corpoCardDash">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Módulos</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0 textoStats">Total Módulos</h5>
                       <span class="h2 font-weight-bold mb-0">{{this.total['modulos']}}</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                        <i class="ni ni-chart-pie-35 "></i>
+                      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow iconeStats">
+                        <i class="ni ni-folder-17 "></i>
                       </div>
                     </div>
                   </div>
@@ -73,15 +78,15 @@
             <div class="col-xl-4 col-md-6">
               <div class="card card-stats">
                 <!-- Card body -->
-                <div class="card-body">
+                <div class="card-body corpoCardDash">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Livros</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0 textoStats">Total Livros</h5>
                       <span class="h2 font-weight-bold mb-0">{{this.total['livros']}}</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                        <i class="ni ni-basket "></i>
+                      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow iconeStats">
+                        <i class="ni ni-books "></i>
                       </div>
                     </div>
                   </div>
@@ -213,22 +218,28 @@
           </div>
         </div>
       </div> -->
+      
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-gray d-inline-block mb-0">Livros</h6>
+        </div>
+      </div> 
       <div class="row">
         <div class="col-xl-12">
-          <div class="card">
-            <div class="card-header border-0">
+          <div class="card cardTabela">
+            <!-- <div class="card-header border-0">
               <div class="row align-items-center">
-                <div class="col">
+                 <div class="col">
                   <h3 class="mb-0">Ultimos Livros</h3>
-                </div>
+                </div> 
                 <div class="col text-right">
-                  <!-- <a href="#!" class="btn btn-sm btn-primary">See all</a> -->
+                   <a href="#!" class="btn btn-sm btn-primary">See all</a> 
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="table-responsive">
               <!-- Projects table -->
-              <table class="table align-items-center table-flush">
+              <table class="table align-items-center table-flush tabelaDash">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="sort" data-sort="status">Título</th>
