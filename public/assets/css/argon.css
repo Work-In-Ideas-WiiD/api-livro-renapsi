@@ -29848,3 +29848,36 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
 {
     background: transparent;
 }
+/* Página de login */
+.main-login{
+    height: 100vh;
+    align-content: center;
+    background-image: url("../img/brand/background-login.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    background-color: rgba(0,0,0,0.3);
+}
+.main-login > div{
+    padding-bottom: 0px !important;
+    margin-top: 0px !important;
+}
+.blocoLogin{
+    background-color: rgba(0,0,0,0.8) !important;
+}
+.botaoLogin{
+    background-color: #fed900;
+    color: rgba(0, 0, 0, 0.75);
+    width: 45%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.botaoLogin:hover{
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fed900;
+    border: 1px solid #fed900;
+}
+.linksFooter{
+    padding: 20px;
+    color: #fff !important;
+}

@@ -1,7 +1,7 @@
 <template>
-<div class="main-content">
+<div class="main-content main-login">
     <!-- Header -->
-    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+    <!-- <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
@@ -16,18 +16,18 @@
           <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
         </svg>
       </div>
-    </div>
+    </div> -->
     <!-- Page content -->
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
-          <div class="card bg-secondary border-0 mb-0">
+          <div class="card bg-secondary border-0 mb-0 blocoLogin">
             <div class="card-header bg-transparent">
                <div class="text-center">
                   <img src="assets/img/brand/assinatura-biblioteca-digital.png" class="navbar-brand-img" alt="..." width="300px">
                </div>
             </div>
-            <div class="card-body px-lg-5 py-lg-5">
+            <div class="card-body px-lg-5">
               <!-- <div class="text-center text-muted mb-4">
                 <small>Entre com suas credenciais</small>
               </div> -->
@@ -58,17 +58,17 @@
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4">Login</button>
+                  <button type="submit" class="btn btn-primary my-4 botaoLogin">Login</button>
                 </div>
               </form>
             </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-6">
-              <router-link to="/forgot_passaword" class="text-light"><small>Esqueceu sua senha?</small></router-link>
-            </div>
-            <div class="col-6 text-right">
-              <router-link to="/register" class="text-light"><small>Primeiro Acesso</small></router-link>
+            <div class="row mt-3 linksFooter">
+              <div class="col-6">
+                <router-link to="/forgot_passaword" class="text-white"><small>Esqueceu sua senha?</small></router-link>
+              </div>
+              <div class="col-6 text-right">
+                <router-link to="/register" class="text-white"><small>Primeiro Acesso</small></router-link>
+              </div>
             </div>
           </div>
         </div>
