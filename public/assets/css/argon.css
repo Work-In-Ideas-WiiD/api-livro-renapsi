@@ -29881,3 +29881,39 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
     padding: 20px;
     color: #fff !important;
 }
+
+/* Fim Login */
+
+/* Menu lateral */
+.logoMenu{
+    width: 4rem;
+    max-height: none !important;
+}
+.menuLateral{
+    height: auto;
+    margin-bottom: -15px;
+}
+.blocoMenu{
+    background-color: #1C1E1B !important;
+}
+.navbar-vertical.navbar-expand-xs .navbar-nav > .nav-item > .nav-link.active .linkMenu{
+    color: #1C1E1B !important;
+}
+.iconeMenu, .linkMenu{
+    color: #fff !important;
+}
+.navbar-vertical.navbar-expand-xs .navbar-nav > .nav-item > .nav-link.active .iconeMenu{
+    color: #5399DB !important;
+}
+.blocoLink.router-link-exact-active{
+    background-color: #fff !important;
+    border-radius: 20px 0px 0px 20px !important;
+    margin-right: 0rem !important;
+}
+
+.blocoLink.router-link-exact-active .linkMenu{
+    color: #1C1E1B !important;
+}
+.blocoLink.router-link-exact-active .iconeMenu{
+    color: #5399DB !important;
+}

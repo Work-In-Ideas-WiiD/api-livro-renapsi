@@ -1,5 +1,5 @@
 <template>
-    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white blocoMenu" id="sidenav-main">
         <div class="close-menu-mobile sidenav-toggler d-xl-none" data-action="sidenav-pin" data-target="#sidenav-main">
             <div class="sidenav-toggler-inner">
                 <i class="sidenav-toggler-line"></i>
@@ -9,9 +9,9 @@
         </div>
     <div class="scrollbar-inner">
       <!-- Brand -->
-      <div class="sidenav-header  align-items-center">
+      <div class="sidenav-header  align-items-center menuLateral">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="/assets/img/brand/Grupo_Dema.png" class="navbar-brand-img" alt="...">
+          <img src="/assets/img/brand/Grupo_Dema.png" class="navbar-brand-img logoMenu" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
@@ -20,21 +20,21 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
-               <router-link class="nav-link active" to="/">
-                <i class="ni ni-tv-2 text-primary"></i>
-                <span class="nav-link-text">Dashboard</span>
+               <router-link class="nav-link blocoLink" to="/">
+                <i class="ni ni-tv-2 text-primary iconeMenu"></i>
+                <span class="nav-link-text linkMenu">Dashboard</span>
               </router-link>
             </li>
             <li v-if="$auth.check(1)" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
-              <router-link class="nav-link" to="/administrador">
-                <i class="ni ni-single-02 text-primary"></i>
-                <span class="nav-link-text">Administradores</span>
+              <router-link class="nav-link blocoLink" to="/administrador">
+                <i class="ni ni-single-02 text-primary iconeMenu"></i>
+                <span class="nav-link-text linkMenu">Administradores</span>
               </router-link>
             </li>
             <li v-if="$auth.check([1,2])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
-              <router-link class="nav-link" to="/modulos">
-                <i class="ni ni-folder-17 text-info"></i>
-                <span class="nav-link-text">Módulo</span>
+              <router-link class="nav-link blocoLink" to="/modulos">
+                <i class="ni ni-folder-17 text-info iconeMenu"></i>
+                <span class="nav-link-text linkMenu">Módulo</span>
               </router-link>
             </li>
             <!-- <li v-if="$auth.check([1,2,3,6])" class="nav-item dropdown">
@@ -49,15 +49,15 @@
                 </div>
             </li> -->
             <li v-if="$auth.check([1,2])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
-              <router-link class="nav-link" to="/usuario">
-                <i class="ni ni-circle-08"></i>
-                <span class="nav-link-text">Alunos</span>
+              <router-link class="nav-link blocoLink" to="/usuario">
+                <i class="ni ni-circle-08 iconeMenu"></i>
+                <span class="nav-link-text linkMenu">Alunos</span>
               </router-link>
             </li>
             <li v-if="$auth.check([1,2])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
-              <router-link class="nav-link" to="/livros">
-                <i class="ni ni-books text-success"></i>
-                <span class="nav-link-text">Livros</span>
+              <router-link class="nav-link blocoLink" to="/livros">
+                <i class="ni ni-books text-succes iconeMenu"></i>
+                <span class="nav-link-text linkMenu">Livros</span>
               </router-link>
             </li>
             <!-- <li v-if="$auth.check([1,3,4])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
