@@ -7,7 +7,8 @@
             <div class="card-header border-0">
                 <div class="row align-items-center">
                     <div class="col-8">
-                            <h3 class="mb-0">Lista alunos</h3>
+                    <!--         <h3 class="mb-0">Lista alunos</h3> -->
+                    <search v-on:search="searchUser" ></search>
                     </div>
                     <!-- <div class="col-4 text-right">
                         <router-link to="usuario_criar" class="btn btn-sm btn-primary">Adicionar</router-link>
@@ -16,9 +17,9 @@
             </div>
 
             <!-- Light table -->
-            <search v-on:search="searchUser" ></search>
+            
             <div class="table-responsive">
-              <table class="table align-items-center table-flush">
+              <table class="table align-items-center table-flush tabelaDash">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="sort" data-sort="budget">Username</th>
