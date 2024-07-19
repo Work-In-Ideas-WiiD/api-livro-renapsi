@@ -29996,7 +29996,7 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
     background-color: white;
     color: #5399DB;
 }
-.botaoEditar, .botaoEditar:hover{
+.botaoEditar, .botaoEditar:hover, .botaoEditar:active{
     background-color: transparent;
     border: none;
     box-shadow: none;
@@ -30006,7 +30006,7 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
     margin-right: 10px;
     opacity: 0.7;
 }
-.botaoReenviar, .botaoReenviar:hover{
+.botaoReenviar, .botaoReenviar:hover, .botaoReenviar:active{
     background-color: transparent;
     border: none;
     box-shadow: none;
@@ -30016,7 +30016,7 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
     margin-right: 10px;
     opacity: 0.7;
 }
-.botaoDeletar, .botaoDeletar:hover{
+.botaoDeletar, .botaoDeletar:hover, .botaoDeletar:active{
     background-color: transparent;
     border: none;
     box-shadow: none;

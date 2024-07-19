@@ -6,25 +6,27 @@
             <!-- Card header -->
             <div class="card-header border-0">
                 <div class="row align-items-center">
-                    <div class="col-8">
-                        <h3 class="mb-0">Lista Livros</h3>
+                     <div class="col-8">
+                        <!-- <h3 class="mb-0">Lista Livros</h3>  -->
+                        <search v-on:search="searchLivros" ></search>
                     </div>
                     <div class="col-4 text-right">
-                        <a v-if="$auth.check(1)" href="#" type="button" data-toggle="modal" data-target="#modal-form" class="btn btn-sm btn-primary">Adicionar</a>
+                        <a v-if="$auth.check(1)" href="#" type="button" data-toggle="modal" data-target="#modal-form" class="btn btn-sm btn-primary botaoCadastro"><i class="ni ni-fat-add"></i>Adicionar</a>
                     </div>
                 </div>
             </div>
 
             <!-- Light table -->
-            <search v-on:search="searchLivros" ></search>
+            
             <div class="table-responsive">
-              <table class="table align-items-center table-flush">
+              <table class="table align-items-center table-flush tabelaDash">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="sort" data-sort="status">Título</th>
                     <th scope="col" class="sort" data-sort="completion">Módulos</th>
                     <th scope="col" class="sort" data-sort="completion">Tags</th>
                     <th scope="col" class="sort" data-sort="completion">Data</th>
+                    <th scope="col" class="sort" data-sort="completion">Ações</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -44,8 +46,8 @@
                         <td>{{ livro.nome_tags }}</td>
                         <td>{{ livro.criado_em }}</td>
                         <td>
-                            <button v-if="$auth.check(1)" class="btn-circle btn-sm btn-primary" title="Editar" block data-toggle="modal" data-target="#modal-form-edit" @click="editLivro(livro)"><i class="fas fa-fw fa-edit"></i></button>
-                            <button v-if="$auth.check(1)" class="btn-circle btn-sm btn-danger" title="Deletar" data-toggle="modal" data-target="#modal-delete" block @click="showDelete(livro)"><i class="fas fa-fw fa-trash-alt"></i></button>
+                            <button v-if="$auth.check(1)" class="btn-circle btn-sm btn-primary botaoEditar" title="Editar" block data-toggle="modal" data-target="#modal-form-edit" @click="editLivro(livro)"><i class="fas fa-fw fa-edit"></i></button>
+                            <button v-if="$auth.check(1)" class="btn-circle btn-sm btn-danger botaoDeletar" title="Deletar" data-toggle="modal" data-target="#modal-delete" block @click="showDelete(livro)"><i class="fas fa-fw fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -145,7 +147,7 @@
                             <textarea v-model="descricao" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div> -->
                         <div class="text-center">
-                            <button type="button" data-dismiss="modal" class="btn btn-danger my-4">Fechar</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-danger my-4 botaoFecharEditar">Fechar</button>
                             <button type="button" @click="postLivro" class="btn btn-primary my-4">Salvar</button>
                         </div>
                     </form>
@@ -239,7 +241,7 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="button" data-dismiss="modal" class="btn btn-danger my-4">Fechar</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-danger my-4 botaoFecharEditar">Fechar</button>
                             <button type="button" @click="updateLivro" class="btn btn-primary my-4">Salvar</button>
                         </div>
                     </form>
