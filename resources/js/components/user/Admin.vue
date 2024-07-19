@@ -5,24 +5,26 @@
           <div class="card">
             <!-- Card header -->
             <div class="card-header border-0">
-                <div class="row align-items-center">
+                <div class="row align-items-left">
                     <div class="col-8">
-                        <h3 class="mb-0">Lista administradores</h3>
+                        <!-- <h3 class="mb-0">Lista administradores</h3> -->
+                        <search v-on:search="searchAdmin" ></search>
                     </div>
                     <div v-if="$auth.check(1)" class="col-4 text-right">
-                        <a style="display: inline-block !important" href="#" type="button" data-toggle="modal" data-target="#modal-form" class="btn btn-sm btn-primary">Adicionar</a>
+                        <a style="display: inline-block !important" href="#" type="button" data-toggle="modal" data-target="#modal-form" class="btn btn-sm btn-primary botaoCadastro"><i class="ni ni-fat-add"></i> Novo cadastro</a>
                     </div>
                 </div>
             </div>
 
             <!-- Light table -->
-            <search v-on:search="searchAdmin" ></search>
+            
             <div class="table-responsive">
-              <table class="table align-items-center table-flush">
+              <table class="table align-items-center table-flush tabelaDash">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="sort" data-sort="status">Email</th>
                     <th scope="col" class="sort" data-sort="completion">Data</th>
+                    <th scope="col" class="sort" data-sort="completion">Ações</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -31,9 +33,9 @@
                         <td>{{ user.email }}</td>
                         <td>{{ user.criado_em }}</td>
                         <td>
-                            <button v-if="$auth.check(1)" class="btn-circle btn-sm btn-primary" title="Editar" block data-toggle="modal" data-target="#modal-form-edit" @click="editUser(user)"><i class="fas fa-fw fa-edit"></i></button>
-                            <button v-if="$auth.check(1)" class="btn-circle btn-sm btn-danger" title="Deletar" data-toggle="modal" data-target="#modal-delete" block @click="showDelete(user)"><i class="fas fa-fw fa-trash-alt"></i></button>
-                            <button v-if="$auth.check(1)" class="btn-circle btn-sm btn-info" title="Reenviar Token" block @click="reenviarToken(user)"><i class="ni ni-send"></i></button>
+                            <button v-if="$auth.check(1)" class="btn-circle btn-sm btn-primary botaoEditar" title="Editar" block data-toggle="modal" data-target="#modal-form-edit" @click="editUser(user)"><i class="fas fa-fw fa-edit"></i></button>
+                            <button v-if="$auth.check(1)" class="btn-circle btn-sm btn-info botaoReenviar" title="Reenviar Token" block @click="reenviarToken(user)"><i class="ni ni-send"></i></button>
+                            <button v-if="$auth.check(1)" class="btn-circle btn-sm btn-danger botaoDeletar" title="Deletar" data-toggle="modal" data-target="#modal-delete" block @click="showDelete(user)"><i class="fas fa-fw fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -121,7 +123,7 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="button" data-dismiss="modal" class="btn btn-danger my-4">Fechar</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-danger my-4 botaoFecharEditar">Fechar</button>
                             <button v-if="!loading" type="button" @click="postUser" class="btn btn-primary my-4">Salvar</button>
                             <button v-else type="button" disabled class="btn btn-primary my-4">Salvar</button>
                         </div>
@@ -205,7 +207,7 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="button" data-dismiss="modal" class="btn btn-danger my-4">Fechar</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-danger my-4 botaoFecharEditar">Fechar</button>
                             <button type="button" @click="updateUser" class="btn btn-primary my-4">Salvar</button>
                         </div>
                     </form>

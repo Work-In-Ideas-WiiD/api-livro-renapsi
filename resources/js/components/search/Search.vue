@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="form-row" style="float: right;">
+        <div class="form-row" style="float: left;">
         <div class="col-4">
             <input type="text" v-on:change.stop="search" v-model="nome" class="form-control" placeholder="Nome">
         </div>
@@ -20,7 +20,7 @@
             </select>
         </div>
         <div class="col-2">
-            <button type="button" v-on:click.stop="search" class="btn btn-primary mb-2"><i class="fas fa-fw fa-search"></i></button>
+            <button type="button" v-on:click.stop="search" class="btn btn-primary mb-2 botaoPesquisar"><i class="fas fa-fw fa-search"></i></button>
         </div>
         </div>
     </div>
