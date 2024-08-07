@@ -1,0 +1,62 @@
+.container
+{
+	border: 2px solid #000;
+}
+
+.stkr
+{
+	font-family: Open Sans,sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.mxmz
+{
+	
+}
+
+#acoes
+{
+	text-align: center;
+}
+
+p
+{
+	margin-bottom: 6px;
+	padding: 0;
+}
+
+.col-1, .col-2, .col-3, .col-4,
+.col-5, .col-6, .col-7, .col-8,
+.col-9, .col-10, .col-11, .col-12
+{
+	border-left: 1px solid #000;
+	border-bottom: 1px solid #000;
+}
+
+body, .table
+{
+	color: #000;
+}
+
+.sessao:not(:first-child)
+{
+	margin-top: 3em;
+}
+
+.table th,
+.table td
+{
+	padding: 0.4rem;
+}
+
+.col-topo
+{
+	border-right: 1px solid #000;
+	border-top: 1px solid #000;
+}
+
+.col-lastinarow
+{
+	border-right: 1px solid #000;
+}
