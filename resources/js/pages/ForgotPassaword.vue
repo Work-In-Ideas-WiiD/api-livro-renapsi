@@ -1,7 +1,7 @@
 <template>
-    <div class="main-content">
+    <div class="main-content main-login">
     <!-- Header -->
-    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+    <div class="header py-7 py-lg-5 pt-lg-5">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
@@ -11,20 +11,20 @@
           </div>
         </div>
       </div>
-      <div class="separator separator-bottom separator-skew zindex-100">
+      <!-- <div class="separator separator-bottom separator-skew zindex-100">
         <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
         </svg>
-      </div>
+      </div> -->
     </div>
     <!-- Page content -->
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
-          <div class="card bg-secondary border-0 mb-0">
+          <div class="card bg-secondary border-0 mb-0 blocoLogin">
             <div class="card-header bg-transparent">
                <div class="text-center">
-              <img src="assets/img/brand/DPCO_Mais.png" class="navbar-brand-img" alt="..." width="150px">
+              <img src="assets/img/brand/assinatura-biblioteca-digital.png" class="navbar-brand-img" alt="..." width="200px">
                </div>
                 <div class="alert alert-danger" v-if="has_error">
                     <p>Error ao enviar link de redefinição de senha!</p>
@@ -50,7 +50,7 @@
                     </span>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4">Enviar link de redefinição de senha</button>
+                  <button type="submit" class="btn btn-primary my-4 botaoLogin">Enviar link de redefinição de senha</button>
                 </div>
               </form>
             </div>

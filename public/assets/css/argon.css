@@ -29868,7 +29868,7 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
 .botaoLogin{
     background-color: #fed900;
     color: rgba(0, 0, 0, 0.75);
-    width: 45%;
+    min-width: 45%;
     padding-top: 15px;
     padding-bottom: 15px;
 }
