@@ -30039,5 +30039,7 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
 .botaoFecharEditar{
     background-color: #C8002D !important;
 }
-
+.tituloPrimeiro{
+    margin-bottom: 20px;
+}
 /* Fim Página Administradores */
