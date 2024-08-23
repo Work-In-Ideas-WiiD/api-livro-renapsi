@@ -146,7 +146,7 @@ class SocialMediaService
             ],
             ['verify' => false]
         );
-    
+
         if ($response->failed() || ($error = $response->object()?->error ?? false)) {
             throw new FacebookInvalidTokenException(($error ?? false) ? $error : null);
         }
