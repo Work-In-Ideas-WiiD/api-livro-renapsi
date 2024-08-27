@@ -138,7 +138,7 @@ class SocialMediaService
     public function verifyMoodle(string $username, string $password): object
     {
         $response = Http::withoutVerifying()->acceptJson()->withOptions(["verify"=>false])->get(
-            'https://moodle.infomach.cloud/login/token.php',
+            'https://demadigital.renapsi.org.br/login/token.php',
             [
                 'username' => $username,
                 'password' => $password,
