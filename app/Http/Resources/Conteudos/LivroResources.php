@@ -34,8 +34,8 @@ class LivroResources extends JsonResource
             return $this->arquivo;
         }
 
-        return $this->arquivo !== null && Storage::disk('spaces')->exists($this->arquivo)
-            ? Storage::disk('spaces')->temporaryUrl($this->arquivo, now()->addMinutes(120))
+        return $this->arquivo !== null && Storage::disk('s3')->exists($this->arquivo)
+            ? Storage::disk('s3')->temporaryUrl($this->arquivo, now()->addMinutes(120))
             : null;
     }
 }

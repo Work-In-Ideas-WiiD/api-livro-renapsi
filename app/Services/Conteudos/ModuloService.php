@@ -59,7 +59,7 @@ class ModuloService
 
     private function uploadToS3(Request $request): bool|string
     {
-        return Storage::disk('spaces')
+        return Storage::disk('s3')
             ->putFile("/icone", $request->file('icone'));
     }
 }
