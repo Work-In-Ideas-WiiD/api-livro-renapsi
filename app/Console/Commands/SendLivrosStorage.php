@@ -27,7 +27,7 @@ class SendLivrosStorage extends Command
      */
     public function handle()
     {
-        $pasta = '/home/charles/Downloads/livros/bilbioteca/1. Módulo Integração/'; //NOME DA PASTA
+        $pasta = '/home/charles/Downloads/livros/bilbioteca/6. Módulo Profissionalizante/'; //NOME DA PASTA
         $pastas = scandir($pasta);
 
         foreach($pastas as $pasta_doc)
@@ -37,21 +37,23 @@ class SendLivrosStorage extends Command
                 $files = scandir($pasta.$pasta_doc);
                 // dd($pasta_doc, $files[2], $pasta.$pasta_doc.'/'.$files[2]);
 
-                $arquivo = $this->uploadToS3($pasta.$pasta_doc.'/'.$files[2], $files[2]);
-
-                if($arquivo)
+                if(isset($files[2]))
                 {
-                    $livro = Livro::updateOrCreate(
-                        [
-                            'titulo' => $pasta_doc,
-                            'arquivo' => "livro/".$files[2],
-                        ]
-                    );
+                    $arquivo = $this->uploadToS3($pasta.$pasta_doc.'/'.$files[2], $files[2]);
 
-                    $livro->modulos()->sync(['9d42f759-9a40-4403-a5fe-92157dac45a2']);
+                    if($arquivo)
+                    {
+                        $livro = Livro::updateOrCreate(
+                            [
+                                'titulo' => $pasta_doc,
+                                'arquivo' => "livro/".$files[2],
+                            ]
+                        );
 
+                        $livro->modulos()->sync(['9d46c33b-76d6-43fa-914b-1a048f0adf21']);
+
+                    }
                 }
-
             }
         }
 

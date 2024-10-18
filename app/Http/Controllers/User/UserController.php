@@ -53,7 +53,7 @@ class UserController extends BaseApiController
      */
     public function destroy(User $user): JsonResponse
     {
-        if (!$user->delete()) {
+        if (!$user->forceDelete()) {
             return $this->sendResponse();
         }
 
