@@ -54,7 +54,7 @@ class UserAdminService
         $user = tap($user)->update(['token' => Str::random(6)]);
 
         $user->resetPasswordNotification(
-            url: route('user-piloto.update-primeiro-acesso')
+            url: config('cliente.url.reset') //route('user-piloto.update-primeiro-acesso')
         );
 
         return $user;

@@ -65,7 +65,7 @@ class UserService
 
     public function sendToken(User $user): User
     {
-        $user->sendNewPasswordRequestNotification(route('update-primeiro-acesso'));
+        $user->sendNewPasswordRequestNotification(config('cliente.url.reset')); //route('update-primeiro-acesso')
         return $user;
     }
 
