@@ -25,7 +25,7 @@ class UserPilotoService
 
             $user->piloto()->create($request->safe()->piloto);
 
-            $user->sendNewPasswordRequestNotification(route('user-piloto.update-primeiro-acesso'));
+            $user->sendNewPasswordRequestNotification(config('cliente.url.reset'));
 
             return $user;
         });
