@@ -7,6 +7,6 @@ return [
         ],
     ],
 'url' => [
-    'reset' => env('https://dev-biblioteca.renapsi.org.br/register', 'URL_RESET'),
+    'reset' => env('URL_RESET', 'https://dev-biblioteca.renapsi.org.br/register'),
 ]
 ];
