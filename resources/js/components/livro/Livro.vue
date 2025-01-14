@@ -17,7 +17,7 @@
             </div>
 
             <!-- Light table -->
-            
+
             <div class="table-responsive">
               <table class="table align-items-center table-flush tabelaDash">
                 <thead class="thead-light">
@@ -494,7 +494,7 @@ export default {
 
         formData.append('_method', 'PUT');
         formData.append('titulo',  app.editLivroData.titulo)
-        formData.append('arquivo',  app.imagem_update) 
+        formData.append('arquivo',  app.imagem_update)
 
         let config = {
             headers: {
@@ -503,13 +503,13 @@ export default {
         }
         this.$http({
           url: `conteudos/livro/` + app.editLivroData.id,
-          method: 'put', 
-          data: formData, 
+          method: 'post',
+          data: formData,
           config: config,
 
             })
             .then(response=>{
-                console.log(response.data);
+                console.log(app.editLivroData);
                 this.getLivros();
                 this.hideEditModal();
 
@@ -536,8 +536,8 @@ export default {
                 }
             })
         },
-      showDelete(modulo){
-        this.deleteModuloData = modulo;
+      showDelete(livro){
+        this.deleteLivroData = livro;
       },
       hideDeleteModal() {
         $('#modal-delete').modal('hide')
@@ -545,12 +545,12 @@ export default {
       deleteLivro(livro) {
 
         this.$http({
-            url: `conteudos/modulo/` + livro.id,
+            url: `conteudos/livro/` + livro.id,
             method: 'DELETE',
           })
 
           .then(response=>{
-            this.livro.data = this.livro.data.filter(obj => {
+            this.livros.data = this.livros.data.filter(obj => {
                 return obj.id != livro.id;
             });
 

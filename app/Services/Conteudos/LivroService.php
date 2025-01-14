@@ -77,8 +77,12 @@ class LivroService
             }
 
             $livro = tap($livro)->update($livro_data);
-            $livro->tags()->sync((new CreateTags())->handle($request->safe()->tags));
-            $livro->modulos()->sync($request->safe()->modulos);
+
+            if($request->safe()->tags)
+                $livro->tags()->sync((new CreateTags())->handle($request->safe()->tags));
+
+            if($request->safe()->modulos)
+                $livro->modulos()->sync($request->safe()->modulos);
 
             return $livro;
         });
