@@ -32,8 +32,8 @@ class ModuloResources extends JsonResource
             return $this->icone;
         }
 
-        return $this->icone !== null && Storage::disk('s3')->exists($this->icone)
-            ? Storage::disk('s3')->temporaryUrl($this->icone, now()->addMinutes(120))
+        return $this->icone !== null && Storage::disk(config('filesystems.default'))->exists($this->icone)
+            ? Storage::disk(config('filesystems.default'))->temporaryUrl($this->icone, now()->addMinutes(120))
             : null;
     }
 }

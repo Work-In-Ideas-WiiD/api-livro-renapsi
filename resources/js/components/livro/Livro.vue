@@ -494,7 +494,7 @@ export default {
 
         formData.append('_method', 'PUT');
         formData.append('titulo',  app.editLivroData.titulo)
-        formData.append('arquivo',  app.imagem_update)
+        formData.append('arquivo',  app.imagem_update) 
 
         let config = {
             headers: {
@@ -503,13 +503,13 @@ export default {
         }
         this.$http({
           url: `conteudos/livro/` + app.editLivroData.id,
-          method: 'post',
-          data: formData,
+          method: 'put', 
+          data: formData, 
           config: config,
 
             })
             .then(response=>{
-
+                console.log(response.data);
                 this.getLivros();
                 this.hideEditModal();
 

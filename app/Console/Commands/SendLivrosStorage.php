@@ -62,7 +62,7 @@ class SendLivrosStorage extends Command
 
     private function uploadToS3($file, $nome): bool|string
     {
-        return Storage::disk('s3')
+        return Storage::disk(config('filesystems.default'))
             ->put("/livro/".$nome, file_get_contents($file));
     }
 }

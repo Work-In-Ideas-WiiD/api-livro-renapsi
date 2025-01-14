@@ -21,7 +21,7 @@ class UploadImage
     {
         $image_content = $request->safe()->imagen;
 
-        $image_content['arquivo'] = Storage::disk('s3')
+        $image_content['arquivo'] = Storage::disk(config('filesystems.default'))
             ->putFile("/$path", $request->file('imagen.arquivo'));
 
 

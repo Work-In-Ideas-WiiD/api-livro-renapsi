@@ -86,7 +86,7 @@ class LivroService
 
     private function uploadToS3(Request $request): bool|string
     {
-        return Storage::disk('s3')
+        return Storage::disk(config('filesystems.default'))
             ->putFile("/livro", $request->file('arquivo'));
     }
 }
