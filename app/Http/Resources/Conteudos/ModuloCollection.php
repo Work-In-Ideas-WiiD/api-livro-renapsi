@@ -15,7 +15,7 @@ class ModuloCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return [
-            'data' => ModuloResources::collection($this->collection),
+            'data' => ModuloIndexResources::collection($this->collection),
         ];
     }
 }

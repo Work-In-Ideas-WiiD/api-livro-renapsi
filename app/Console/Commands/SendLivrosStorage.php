@@ -27,31 +27,48 @@ class SendLivrosStorage extends Command
      */
     public function handle()
     {
-        $pasta = '/home/charles/Downloads/livros/bilbioteca/6. Módulo Profissionalizante/'; //NOME DA PASTA
+        $pasta = '/home/charles/Downloads/livros/new/PROFISSIONALIZANTE TO/'; // NOME DA PASTA
         $pastas = scandir($pasta);
 
-        foreach($pastas as $pasta_doc)
-        {
-            if($pasta_doc != '.' && $pasta_doc != '..')
-            {
-                $files = scandir($pasta.$pasta_doc);
-                // dd($pasta_doc, $files[2], $pasta.$pasta_doc.'/'.$files[2]);
+        foreach ($pastas as $item) {
+            if ($item != '.' && $item != '..') {
+                $caminho_completo = $pasta . $item;
 
-                if(isset($files[2]))
-                {
-                    $arquivo = $this->uploadToS3($pasta.$pasta_doc.'/'.$files[2], $files[2]);
+                // Verifica se é um diretório
+                if (is_dir($caminho_completo)) {
+                    // Se for um diretório, escaneia o conteúdo
+                    $files = scandir($caminho_completo);
 
-                    if($arquivo)
-                    {
+                    // Ignora os diretórios '.' e '..'
+                    foreach ($files as $file) {
+                        if ($file != '.' && $file != '..') {
+                            $arquivo = $this->uploadToS3($caminho_completo . '/' . $file, $file);
+
+                            if ($arquivo) {
+                                $livro = Livro::updateOrCreate(
+                                    [
+                                        'titulo' => $item,
+                                        'arquivo' => "livro/" . $file,
+                                    ]
+                                );
+
+                                $livro->modulos()->syncWithoutDetaching(['9df57305-d27e-424a-859c-76d21034d2b7']);
+                            }
+                        }
+                    }
+                } else {
+                    // Se for um arquivo, processa diretamente
+                    $arquivo = $this->uploadToS3($caminho_completo, $item);
+
+                    if ($arquivo) {
                         $livro = Livro::updateOrCreate(
                             [
-                                'titulo' => $pasta_doc,
-                                'arquivo' => "livro/".$files[2],
+                                'titulo' => pathinfo($item, PATHINFO_FILENAME), // Remove a extensão do nome do arquivo
+                                'arquivo' => "livro/" . $item,
                             ]
                         );
 
-                        $livro->modulos()->sync(['9d46c33b-76d6-43fa-914b-1a048f0adf21']);
-
+                        $livro->modulos()->syncWithoutDetaching(['9df57305-d27e-424a-859c-76d21034d2b7']);
                     }
                 }
             }

@@ -32,8 +32,8 @@ class ModuloService
                 // AllowedFilter::custom('global', new GlobalIndexFilter(self::GLOBAL_FILTER_FIELDS)),
             ])
             ->defaultSort('-created_at')
-            ->allowedSorts([AllowedSort::field('criado_em', 'created_at'), 'nome'])
-            ->allowedIncludes(['livros']);
+            ->allowedSorts([AllowedSort::field('criado_em', 'created_at'), 'nome']);
+            //->allowedIncludes(['livros']);
 
         return $query->paginate($paginate);
     }
