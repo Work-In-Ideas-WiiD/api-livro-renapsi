@@ -44,6 +44,12 @@ class LivroController extends BaseApiController
      */
     public function show(Livro $livro): LivroResources
     {
+        criar_log_usuario(
+            'online',
+            Livro::class,
+            $livro->id
+        );
+
         return new LivroResources($livro);
     }
 
@@ -95,5 +101,16 @@ class LivroController extends BaseApiController
 
         return response()->json($total, 200);
 
+    }
+
+    public function registarDownload(Livro $livro): JsonResponse
+    {
+        criar_log_usuario(
+            'download',
+            Livro::class,
+            $livro->id
+        );
+
+        return response()->json(['sucess' => 'Log download registrado'], 200);
     }
 }

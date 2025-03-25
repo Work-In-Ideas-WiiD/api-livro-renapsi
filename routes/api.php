@@ -8,6 +8,7 @@ use App\Http\Controllers\Conteudo\ModuloController;
 use App\Http\Controllers\Conteudo\LivroController;
 use App\Http\Controllers\Auth\SocialMediaController;
 use App\Http\Controllers\User\UserAdminController;
+use App\Http\Controllers\Log\LogController;
 
 
 // Route::get('/user', function (Request $request) {
@@ -62,6 +63,15 @@ Route::middleware('auth:api')->group(function () {
 
     });
 
+    Route::group([
+        'prefix' => 'logs',
+        'as' => 'logs.',
+    ], function () {
+        Route::get('livros', [LogController::class, 'index']);
+        Route::get('acessos', [LogController::class, 'indexAcesso']);
+        Route::get('show/{log}', [LogController::class, 'show']);
+    });
+
     Route::post('users/suporte', [UserController::class, 'sendSuport'])
         ->name('users.suporte');
 
@@ -73,4 +83,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('tags/{livro}', [LivroController::class, 'listTags']);
 
     Route::get('dashboard/total', [LivroController::class, 'total']);
+
+    Route::get('registrar_download/{livro}', [LivroController::class, 'registarDownload']);
 });

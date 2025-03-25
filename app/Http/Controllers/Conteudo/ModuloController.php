@@ -41,6 +41,12 @@ class ModuloController extends BaseApiController
      */
     public function show(Modulo $modulo): ModuloResources
     {
+        criar_log_usuario(
+            'modulo',
+            Modulo::class,
+            $modulo->id
+        );
+
         return new ModuloResources($modulo);
     }
 
