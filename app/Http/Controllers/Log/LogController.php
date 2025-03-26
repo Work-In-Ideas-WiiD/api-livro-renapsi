@@ -26,6 +26,17 @@ class LogController extends Controller
         ->when($request->user_id, function($query, $value) {
             $query->where('user_id', $value);
         })
+        ->when($request->referencia, function ($query, $request) {
+            $query->whereHas('model', function ($query) use ($request) {
+                $query->where('arquivo', 'ILIKE', '%' . $request . '%')
+                ->orWhere('nome', 'ILIKE', '%' . $request . '%');
+            });
+        })
+        ->when($request->nome, function ($query, $request) {
+            $query->whereHas('user', function ($query) use ($request) {
+                $query->where('email', 'ILIKE', '%' . $request . '%');
+            });
+        })
         ->when($request->data_inicial, function ($query) use ($request) {
             $query->whereDate('created_at', '>=', $request->data_inicial);
         })
@@ -47,6 +58,11 @@ class LogController extends Controller
         ->when($request->user_id, function($query, $value) {
             $query->where('user_id', $value);
         })
+        ->when($request->nome, function ($query, $request) {
+            $query->whereHas('user', function ($query) use ($request) {
+                $query->where('email', 'ILIKE', '%' . $request . '%');
+            });
+        })
         ->when($request->data_inicial, function ($query) use ($request) {
             $query->whereDate('created_at', '>=', $request->data_inicial);
         })
@@ -65,4 +81,57 @@ class LogController extends Controller
         return Log::find($log);
     }
 
+    public function registroAcessoChart()
+    {
+        for ($i = 0; $i < 12; $i++) {
+
+            $total = Acesso::whereMonth('created_at', $i +1)->count();
+
+            $data[] = $total;
+        }
+
+        return response()->json($data, 200);
+    }
+
+    public function registroAcessoMesChart()
+    {
+        for ($i = 0; $i < 12; $i++) {
+
+            $total = Acesso::whereMonth('created_at', $i +1)
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+            $data[] = $total;
+        }
+
+        return response()->json($data, 200);
+    }
+
+    public function registroLivroMesChart()
+    {
+        for ($i = 0; $i < 12; $i++) {
+
+            $total = Log::whereMonth('created_at', $i +1)
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+            $data[] = $total;
+        }
+
+        return response()->json($data, 200);
+    }
+
+    public function registroLivroChart()
+    {
+        $cat = array("download", "online", "modulo");
+
+        for ($i = 0; $i < 3; $i++) {
+
+            $total = Log::whereType($cat[$i])->count();
+
+            $data[] = $total;
+        }
+
+        return response()->json($data, 200);
+    }
 }

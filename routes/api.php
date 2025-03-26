@@ -70,6 +70,12 @@ Route::middleware('auth:api')->group(function () {
         Route::get('livros', [LogController::class, 'index']);
         Route::get('acessos', [LogController::class, 'indexAcesso']);
         Route::get('show/{log}', [LogController::class, 'show']);
+
+        Route::get('grafico/registro_acesso', [LogController::class, 'registroAcessoChart']);
+        Route::get('grafico/registro_mes_acesso', [LogController::class, 'registroAcessoMesChart']);
+
+        Route::get('grafico/registro_livro', [LogController::class, 'registroLivroChart']);
+        Route::get('grafico/registro_mes_livro', [LogController::class, 'registroLivroMesChart']);
     });
 
     Route::post('users/suporte', [UserController::class, 'sendSuport'])

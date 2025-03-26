@@ -1,30 +1,29 @@
 <template>
     <div class="container-fluid mt--6">
         <div class="row">
-        <div class="col-xl-6">
+        <!-- <div class="col-xl-6">
           <div class="card">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">Escala Cat</h6>
+                  <h6 class="text-uppercase text-muted ls-1 mb-1">Acessos</h6>
                   <h5 class="h3 mb-0">Total Registros</h5>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <!-- Chart -->
               <div class="chart">
                 <canvas id="chart-bars-registro" class="chart-canvas"></canvas>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-xl-6">
+        </div> -->
+        <div class="col-xl-12">
           <div class="card">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">>Escala Cat</h6>
+                  <h6 class="text-uppercase text-muted ls-1 mb-1">Acessos</h6>
                   <h5 class="h3 mb-0">Total Mês</h5>
                 </div>
               </div>
@@ -44,14 +43,14 @@
             <div class="card-header border-0">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h3 class="mb-0">Registros Escalas Cat</h3>
+                        <h3 class="mb-0">Registros Acessos</h3>
                     </div>
-                    <div class="col-4 text-right">
+                    <!-- <div class="col-4 text-right">
                         <a @click="exportRelatorio" href="#" type="button" data-toggle="modal" data-target="#modal-form" class="btn btn-sm btn-success">Exportar</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
-            
+
             <!-- Light table -->
             <search v-on:search="searchCat" ></search>
             <div class="table-responsive">
@@ -59,30 +58,14 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="sort" data-sort="budget">Usuário</th>
-                    <th scope="col" class="sort" data-sort="status">Tenho Tosse</th>
-                    <th scope="col" class="sort" data-sort="status" >N Tenho Catarro</th>
-                    <th scope="col" class="sort" data-sort="status" >N Pressão Peito</th>
-                    <th scope="col" class="sort" data-sort="status" >Sub Escada</th>
-                    <th scope="col" class="sort" data-sort="status" >Limitacão Em Casa</th>
-                    <th scope="col" class="sort" data-sort="status" >Sair De Casa</th>
-                    <th scope="col" class="sort" data-sort="status" >Durmo Prof.</th>
-                    <th scope="col" class="sort" data-sort="status" >Disposição</th>
-                    <th scope="col" class="sort" data-sort="status" >Total</th>
-                    <th scope="col" class="sort" data-sort="completion">Data</th>
+                    <th scope="col" class="sort" data-sort="completion">Data Cadastro</th>
+                    <th scope="col" class="sort" data-sort="completion">Data Acesso</th>
                   </tr>
                 </thead>
                 <tbody class="list">
                     <tr v-for="escala in escalas.data" v-bind:key="escala.id" style="margin-bottom: 5px;">
-                        <td>{{ escala.user.name }}</td>
-                        <td>{{ escala.tenho_tosse }}</td>
-                        <td>{{ escala.nao_tenho_catarro }}</td>
-                        <td>{{ escala.nao_sinto_pressao_peito }}</td>
-                        <td>{{ escala.faltar_ar_subindo_escada }}</td>
-                        <td>{{ escala.nao_sinto_limitacao_casa }}</td>
-                        <td>{{ escala.nao_sinto_limitacao_sair }}</td>
-                        <td>{{ escala.dormir_profundamente }}</td>
-                        <td>{{ escala.energia_disposicao }}</td>
-                        <td>{{ escala.tenho_tosse + escala.nao_tenho_catarro + escala.nao_sinto_pressao_peito + escala.faltar_ar_subindo_escada + escala.nao_sinto_limitacao_casa + escala.nao_sinto_limitacao_sair + escala.dormir_profundamente + escala.energia_disposicao }}</td>
+                        <td>{{ escala.user.email }}</td>
+                        <td>{{ getHumanDate(escala.user.created_at) }}</td>
                         <td>{{ getHumanDate(escala.created_at) }}</td>
                     </tr>
                 </tbody>
@@ -101,7 +84,7 @@
 </template>
 <script>
 import moment from 'moment/moment';
-import search from '../search/SearchCat.vue';
+import search from '../search/SearchPedido.vue';
 export default {
     data() {
       return {
@@ -121,7 +104,7 @@ export default {
       this.salesChart();
       this.getEscalaCatMesChart();
       this.getEscalas();
-      this.getEscalaCatChart();
+    //   this.getEscalaCatChart();
     },
     methods:{
         exportRelatorio(){
@@ -129,7 +112,7 @@ export default {
             url: `export/escala_cat`,
             method: 'GET'
             })
-            .then(response=>{ 
+            .then(response=>{
                 window.open('/storage/relatorio/escala_cat.xlsx')
             }, error=>{
                 this.has_error = true
@@ -137,10 +120,10 @@ export default {
         },
         getEscalaCatChart() {
             this.$http({
-            url: `dashboard/escala_cat`,
+            url: `logs/grafico/registro_acesso`,
             method: 'GET',
             })
-            .then(response=>{ 
+            .then(response=>{
                 this.escalaCat = response.data;
                 this.barsChartRegistro(this.escalaCat);
             }).catch(error=>{
@@ -149,10 +132,10 @@ export default {
         },
         getEscalaCatMesChart() {
             this.$http({
-            url: `dashboard/escala_mes_cat`,
+            url: `logs/grafico/registro_mes_acesso`,
             method: 'GET',
             })
-            .then(response=>{ 
+            .then(response=>{
                 this.escalaMesCat = response.data;
                 this.barsChart(this.escalaMesCat);
             }).catch(error=>{
@@ -189,7 +172,7 @@ export default {
         }
 
         this.$http({
-          url: `relatorio/cat?page=` + page,
+          url: `logs/acessos?page=` + page,
           method: 'GET',
           params: {
             like: this.searchLike,

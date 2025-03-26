@@ -60,6 +60,20 @@
                 <span class="nav-link-text linkMenu">Livros</span>
               </router-link>
             </li>
+
+            <li v-if="$auth.check([1,2])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
+              <router-link class="nav-link blocoLink" to="/relatorio_acesso">
+                <i class="ni ni-chart-bar-32 text-succes iconeMenu"></i>
+                <span class="nav-link-text linkMenu">Relatório Acesso</span>
+              </router-link>
+            </li>
+
+            <li v-if="$auth.check([1,2])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
+              <router-link class="nav-link blocoLink" to="/relatorio_mmrc">
+                <i class="ni ni-chart-bar-32 text-succes iconeMenu"></i>
+                <span class="nav-link-text linkMenu">Relatório Livros</span>
+              </router-link>
+            </li>
             <!-- <li v-if="$auth.check([1,3,4])" class="nav-item sidenav-toggler p-0" data-action="sidenav-pin" data-target="#sidenav-main">
               <router-link class="nav-link" to="/pedido_entrega">
                 <i class="ni ni-cart text-success"></i>

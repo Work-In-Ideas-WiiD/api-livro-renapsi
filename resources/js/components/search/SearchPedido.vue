@@ -2,10 +2,10 @@
     <div style="margin-left: 10px;">
         <div class="form-row" style="float: right;">
         <div class="col-3" style="margin-bottom: 10px;">
-            <input type="text" v-on:change.stop="search" v-model="nome" class="form-control" placeholder="Nome / Cliente">
+            <input type="text" v-on:change.stop="search" v-model="nome" class="form-control" placeholder="Usuário">
         </div>
          <div class="col-3">
-            <input type="text" v-on:change.stop="search" v-model="referencia" class="form-control" placeholder="Referência">
+            <input type="text" v-on:change.stop="search" v-model="referencia" class="form-control" placeholder="Módulo">
         </div>
         <div class="col-2" style="margin-bottom: 10px;">
             <select v-model="mostrar" class="custom-select">

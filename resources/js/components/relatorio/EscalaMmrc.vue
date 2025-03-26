@@ -6,13 +6,12 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">Escala mMRC</h6>
+                  <h6 class="text-uppercase text-muted ls-1 mb-1">Acessos</h6>
                   <h5 class="h3 mb-0">Total Registros</h5>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <!-- Chart -->
               <div class="chart">
                 <canvas id="chart-bars-registro" class="chart-canvas"></canvas>
               </div>
@@ -24,7 +23,7 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">Escala mMRC</h6>
+                  <h6 class="text-uppercase text-muted ls-1 mb-1">Acessos</h6>
                   <h5 class="h3 mb-0">Total Mês</h5>
                 </div>
               </div>
@@ -44,42 +43,31 @@
             <div class="card-header border-0">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h3 class="mb-0">Registros Escalas mMRC</h3>
+                        <h3 class="mb-0">Registros Livros / Modulos</h3>
                     </div>
-                    <div class="col-4 text-right">
+                    <!-- <div class="col-4 text-right">
                         <a @click="exportRelatorio" href="#" type="button" data-toggle="modal" data-target="#modal-form" class="btn btn-sm btn-success">Exportar</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
-            
+
             <!-- Light table -->
-            <search v-on:search="searchMmrc" ></search>
+            <search v-on:search="searchCat" ></search>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="sort" data-sort="budget">Usuário</th>
-                    <th scope="col" class="sort" data-sort="status">Faltar de Ar</th>
-                    <th scope="col" class="sort" data-sort="status" >Subindo Rampa</th>
-                    <th scope="col" class="sort" data-sort="status" >Andando Devagar</th>
-                    <th scope="col" class="sort" data-sort="status" >Andando 100m</th>
-                    <th scope="col" class="sort" data-sort="status" >Faltar de Ar Vestindo</th>
-                    <th scope="col" class="sort" data-sort="completion">Data</th>
+                    <th scope="col" class="sort" data-sort="status" >Tipo</th>
+                    <th scope="col" class="sort" data-sort="status" >Modulo</th>
+                    <th scope="col" class="sort" data-sort="completion">Data Registro</th>
                   </tr>
                 </thead>
                 <tbody class="list">
                     <tr v-for="escala in escalas.data" v-bind:key="escala.id" style="margin-bottom: 5px;">
-                        <td>{{ escala.user.name }}</td>
-                        <td v-if="escala.sofre_falta_ar" >Sim</td>
-                        <td v-else >Não</td>
-                        <td v-if="escala.andando_subindo_rampa" >Sim</td>
-                        <td v-else >Não</td>
-                        <td v-if="escala.andando_devagar">Sim</td>
-                        <td v-else >Não</td>
-                        <td v-if="escala.andando_menos_100m" >Sim</td>
-                        <td v-else >Não</td>
-                        <td v-if="escala.sofre_falta_ar_vestindo" >Sim</td>
-                        <td v-else >Não</td>
+                        <td>{{ escala.user.email }}</td>
+                        <td>{{ escala.type }}</td>
+                        <td>{{ escala.model.nome ?? escala.model.arquivo }}</td>
                         <td>{{ getHumanDate(escala.created_at) }}</td>
                     </tr>
                 </tbody>
@@ -98,7 +86,7 @@
 </template>
 <script>
 import moment from 'moment/moment';
-import search from '../search/SearchMmrc.vue';
+import search from '../search/SearchPedido.vue';
 export default {
     data() {
       return {
@@ -106,63 +94,66 @@ export default {
         escalas: {},
         searchLike: '',
         searchOder: '',
-        searchMostrar: '',
         searchEscala: '',
-        escalaMmrc: [],
-        escalaMesMmrc: []
+        searchNivel: '',
+        searchMostrar: '',
+        escalaCat: [],
+        escalaMesCat: []
+
       }
     },
     mounted() {
-      this.getEscalaMmrcChart();
-      this.getEscalaMmrcMesChart();
       this.salesChart();
+      this.getEscalaCatMesChart();
       this.getEscalas();
+      this.getEscalaCatChart();
     },
     methods:{
         exportRelatorio(){
           this.$http({
-            url: `export/escala_mmrc`,
+            url: `export/escala_cat`,
             method: 'GET'
             })
-            .then(response=>{ 
-                window.open('/storage/relatorio/escala_mmrc.xlsx')
+            .then(response=>{
+                window.open('/storage/relatorio/escala_cat.xlsx')
             }, error=>{
                 this.has_error = true
             })
         },
-        getEscalaMmrcChart() {
+        getEscalaCatChart() {
             this.$http({
-            url: `dashboard/escala_mmrc`,
+            url: `logs/grafico/registro_livro`,
             method: 'GET',
             })
-            .then(response=>{ 
-                this.escalaMmrc = response.data;
-                this.barsChartRegistro(this.escalaMmrc);
+            .then(response=>{
+                this.escalaCat = response.data;
+                this.barsChartRegistro(this.escalaCat);
             }).catch(error=>{
                 this.has_error = true
             })
         },
-        getEscalaMmrcMesChart() {
+        getEscalaCatMesChart() {
             this.$http({
-            url: `dashboard/escala_mes_mmrc`,
+            url: `logs/grafico/registro_mes_livro`,
             method: 'GET',
             })
-            .then(response=>{ 
-                this.escalaMesMmrc = response.data;
-                this.barsChart(this.escalaMesMmrc);
+            .then(response=>{
+                this.escalaMesCat = response.data;
+                this.barsChart(this.escalaMesCat);
             }).catch(error=>{
                 this.has_error = true
             })
         },
-        searchMmrc(payload){
+        searchCat(payload){
             this.$http({
-                url: 'relatorio/mmrc',
+                url: 'relatorio/cat',
                 method: 'GET',
                 params: {
                 like: payload.dados.nome,
                 order: payload.dados.ordem,
                 mostrar: payload.dados.mostrar,
                 escala: payload.dados.escala,
+                nivel: payload.dados.nivel
                 },
             })
             .then(response=>{
@@ -170,6 +161,7 @@ export default {
                 this.searchMostrar = payload.dados.mostrar;
                 this.searchOder = payload.dados.ordem;
                 this.searchEscala = payload.dados.escala;
+                this.searchNivel = payload.dados.nivel;
                 this.escalas = response.data;
 
             }, error=>{
@@ -182,13 +174,14 @@ export default {
         }
 
         this.$http({
-          url: `relatorio/mmrc?page=` + page,
+          url: `logs/livros?page=` + page,
           method: 'GET',
           params: {
             like: this.searchLike,
             order: this.searchOder,
             mostrar: this.searchMostrar,
             escala: this.searchEscala,
+            nivel: this.searchNivel,
           },
         })
           .then(response => {
@@ -197,7 +190,7 @@ export default {
               this.has_error = true
           })
       },
-      barsChart(escalaMesMmrc){
+      barsChart(escalaMesCat){
         var BarsChart = (function() {
 
         //
@@ -220,8 +213,8 @@ export default {
                 data: {
                   labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
                   datasets: [{
-                    label: 'Quantidade',
-                    data: escalaMesMmrc
+                    label: 'Registro',
+                    data: escalaMesCat
                   }]
                 }
               });
@@ -238,7 +231,7 @@ export default {
 
           })();
       },
-      barsChartRegistro(escalaMmrc){
+      barsChartRegistro(escalaCat){
         var BarsChart = (function() {
 
         //
@@ -259,10 +252,10 @@ export default {
               var ordersChart = new Chart($chart, {
                 type: 'bar',
                 data: {
-                  labels: ["Só sofre de falta", "Falta de ar subindo", "Anda mais devagar", "Menos de 100m ", "Sente tanta falta de ar"],
+                  labels: ["download", "online", "modulo"],
                   datasets: [{
                     label: 'Registro',
-                    data: escalaMmrc
+                    data: escalaCat
                   }]
                 }
               });
@@ -578,6 +571,7 @@ export default {
           };
 
         })();
+
       },
       getHumanDate : function (date) {
         return moment(date, 'YYYY-MM-DD H:mm').format('DD/MM/YYYY H:mm');

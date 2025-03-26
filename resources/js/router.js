@@ -278,8 +278,8 @@ const routes = [
     }
   },
   {
-    path: '/relatorio_cat',
-    name: 'relatorio.cat',
+    path: '/relatorio_acesso',
+    name: 'relatorio.acesso',
     component: ListaCat,
     meta: {
       auth: {roles: [1,2], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
