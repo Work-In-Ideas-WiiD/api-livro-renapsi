@@ -30042,4 +30042,9 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
 .tituloPrimeiro{
     margin-bottom: 20px;
 }
+.estiloTabela{
+    background-color: #f5f5f5; 
+    border-radius: 20px;
+    padding: 10px;
+}
 /* Fim Página Administradores */

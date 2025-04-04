@@ -26,7 +26,7 @@
             </select>
         </div>
         <div class="col-2">
-            <button type="button" v-on:click.stop="search" class="btn btn-primary mb-2"><i class="fas fa-fw fa-search"></i></button>
+            <button type="button" v-on:click.stop="search" class="btn btn-primary mb-2 botaoPesquisar"><i class="fas fa-fw fa-search"></i></button>
         </div>
         </div>
     </div>

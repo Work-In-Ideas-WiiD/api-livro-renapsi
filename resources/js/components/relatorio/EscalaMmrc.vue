@@ -12,7 +12,7 @@
               </div>
             </div>
             <div class="card-body">
-              <div class="chart">
+              <div class="chart estiloTabela">
                 <canvas id="chart-bars-registro" class="chart-canvas"></canvas>
               </div>
             </div>
@@ -30,7 +30,7 @@
             </div>
             <div class="card-body">
               <!-- Chart -->
-              <div class="chart">
+              <div class="chart estiloTabela">
                 <canvas id="chart-bars" class="chart-canvas"></canvas>
               </div>
             </div>
@@ -304,7 +304,7 @@ export default {
               'info': '#11cdef',
               'success': '#2dce89',
               'danger': '#f5365c',
-              'warning': '#fb6340'
+              'warning': '#C8002D'
             },
             black: '#12263F',
             white: '#FFFFFF',
