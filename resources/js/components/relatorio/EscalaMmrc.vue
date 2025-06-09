@@ -97,6 +97,8 @@ export default {
         searchEscala: '',
         searchNivel: '',
         searchMostrar: '',
+        searchDataInicial: '',
+        searchDataFinal: '',
         escalaCat: [],
         escalaMesCat: []
 
@@ -146,11 +148,13 @@ export default {
         },
         searchCat(payload){
             this.$http({
-                url: 'relatorio/cat',
+                url: 'logs/livros',
                 method: 'GET',
                 params: {
-                like: payload.dados.nome,
+                nome: payload.dados.nome,
                 order: payload.dados.ordem,
+                data_inicial: payload.dados.data_inicial,
+                data_final: payload.dados.data_final,
                 mostrar: payload.dados.mostrar,
                 escala: payload.dados.escala,
                 nivel: payload.dados.nivel
@@ -160,6 +164,8 @@ export default {
                 this.searchLike = payload.dados.nome;
                 this.searchMostrar = payload.dados.mostrar;
                 this.searchOder = payload.dados.ordem;
+                this.searchDataInicial = payload.dados.data_inicial
+                this.searchDataFinal = payload.dados.data_final,
                 this.searchEscala = payload.dados.escala;
                 this.searchNivel = payload.dados.nivel;
                 this.escalas = response.data;

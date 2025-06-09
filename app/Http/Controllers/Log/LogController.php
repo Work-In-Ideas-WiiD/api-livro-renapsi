@@ -28,13 +28,13 @@ class LogController extends Controller
         })
         ->when($request->referencia, function ($query, $request) {
             $query->whereHas('model', function ($query) use ($request) {
-                $query->where('arquivo', 'ILIKE', '%' . $request . '%')
-                ->orWhere('nome', 'ILIKE', '%' . $request . '%');
+                $query->where('arquivo', 'like', '%' . $request . '%')
+                ->orWhere('nome', 'like', '%' . $request . '%');
             });
         })
         ->when($request->nome, function ($query, $request) {
             $query->whereHas('user', function ($query) use ($request) {
-                $query->where('email', 'ILIKE', '%' . $request . '%');
+                $query->where('email', 'like', '%' . $request . '%');
             });
         })
         ->when($request->data_inicial, function ($query) use ($request) {
@@ -60,7 +60,7 @@ class LogController extends Controller
         })
         ->when($request->nome, function ($query, $request) {
             $query->whereHas('user', function ($query) use ($request) {
-                $query->where('email', 'ILIKE', '%' . $request . '%');
+                $query->where('email', 'like', '%' . $request . '%');
             });
         })
         ->when($request->data_inicial, function ($query) use ($request) {

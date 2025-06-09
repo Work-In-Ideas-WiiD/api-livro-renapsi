@@ -28,7 +28,7 @@
                 </div>
               </div>
             </div>
-            <div class="card-body"> 
+            <div class="card-body">
               <!-- Chart -->
               <div class="chart estiloTabela" >
                 <canvas id="chart-bars" class="chart-canvas"></canvas>
@@ -95,6 +95,8 @@ export default {
         searchEscala: '',
         searchNivel: '',
         searchMostrar: '',
+        searchDataInicial: '',
+        searchDataFinal: '',
         escalaCat: [],
         escalaMesCat: []
 
@@ -144,12 +146,14 @@ export default {
         },
         searchCat(payload){
             this.$http({
-                url: 'relatorio/cat',
+                url: 'logs/acessos',
                 method: 'GET',
                 params: {
-                like: payload.dados.nome,
+                nome: payload.dados.nome,
                 order: payload.dados.ordem,
                 mostrar: payload.dados.mostrar,
+                data_inicial: payload.dados.data_inicial,
+                data_final: payload.dados.data_final,
                 escala: payload.dados.escala,
                 nivel: payload.dados.nivel
                 },
@@ -157,6 +161,8 @@ export default {
             .then(response=>{
                 this.searchLike = payload.dados.nome;
                 this.searchMostrar = payload.dados.mostrar;
+                this.searchDataInicial = payload.dados.data_inicial
+                this.searchDataFinal = payload.dados.data_final,
                 this.searchOder = payload.dados.ordem;
                 this.searchEscala = payload.dados.escala;
                 this.searchNivel = payload.dados.nivel;
