@@ -5,7 +5,12 @@
             <input type="text" v-on:change.stop="search" v-model="nome" class="form-control" placeholder="Usuário">
         </div>
          <div class="col-3">
-            <input type="text" v-on:change.stop="search" v-model="referencia" class="form-control" placeholder="Módulo">
+             <select v-model="type" class="custom-select">
+            <option value="">Modulo:</option>
+            <option value="online">Online</option>
+            <option value="modulo">Modulo</option>
+            <option value="download">Download</option>
+            </select>
         </div>
         <div class="col-2" style="margin-bottom: 10px;">
             <select v-model="mostrar" class="custom-select">
@@ -43,6 +48,7 @@ export default {
         ptBR: ptBR,
        nome: '',
        referencia: '',
+       type: '',
        mostrar: '',
        ordem: '',
        data_inicial: '',
@@ -55,6 +61,7 @@ export default {
                 dados: {
                     nome: this.nome,
                     referencia: this.referencia,
+                    type: this.type,
                     mostrar: this.mostrar,
                     ordem: this.ordem,
                     data_inicial: this.data_inicial,

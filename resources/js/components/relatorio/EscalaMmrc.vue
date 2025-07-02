@@ -97,6 +97,7 @@ export default {
         searchEscala: '',
         searchNivel: '',
         searchMostrar: '',
+        searchType: '',
         searchDataInicial: '',
         searchDataFinal: '',
         escalaCat: [],
@@ -155,6 +156,7 @@ export default {
                 order: payload.dados.ordem,
                 data_inicial: payload.dados.data_inicial,
                 data_final: payload.dados.data_final,
+                type: payload.dados.type,
                 mostrar: payload.dados.mostrar,
                 escala: payload.dados.escala,
                 nivel: payload.dados.nivel
@@ -163,6 +165,7 @@ export default {
             .then(response=>{
                 this.searchLike = payload.dados.nome;
                 this.searchMostrar = payload.dados.mostrar;
+                this.searchType = payload.dados.type;
                 this.searchOder = payload.dados.ordem;
                 this.searchDataInicial = payload.dados.data_inicial
                 this.searchDataFinal = payload.dados.data_final,
@@ -186,6 +189,7 @@ export default {
             like: this.searchLike,
             order: this.searchOder,
             mostrar: this.searchMostrar,
+            type: this.searchType,
             escala: this.searchEscala,
             nivel: this.searchNivel,
           },
